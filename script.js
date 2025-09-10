@@ -288,3 +288,77 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+// Additional JavaScript for mobile optimizations
+document.addEventListener('DOMContentLoaded', function() {
+  // Lazy loading for images
+  const lazyImages = document.querySelectorAll('.gallery-item img, .category-gallery-item img');
+  
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src || img.src;
+          img.classList.add('loaded');
+          img.parentElement.classList.add('loaded');
+          imageObserver.unobserve(img);
+        }
+      });
+    });
+
+    lazyImages.forEach(img => {
+      // Store original src in data-src
+      if (!img.dataset.src) {
+        img.dataset.src = img.src;
+      }
+      // Set a placeholder initially
+      img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMzMzIi8+PC9zdmc+';
+      imageObserver.observe(img);
+    });
+  } else {
+    // Fallback for browsers without IntersectionObserver
+    lazyImages.forEach(img => {
+      img.classList.add('loaded');
+      img.parentElement.classList.add('loaded');
+    });
+  }
+  
+  // Improved touch handling for mobile
+  let touchStartX = 0;
+  let touchStartY = 0;
+  
+  document.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, {passive: true});
+  
+  document.addEventListener('touchend', function(e) {
+    const touchEndX = e.changedTouches[0].screenX;
+    const touchEndY = e.changedTouches[0].screenY;
+    
+    // If it's a tap (not a swipe)
+    if (Math.abs(touchEndX - touchStartX) < 30 && Math.abs(touchEndY - touchStartY) < 30) {
+      const target = e.target;
+      
+      // Handle category filter taps
+      if (target.classList.contains('category-filter')) {
+        target.focus();
+      }
+    }
+  }, {passive: true});
+  
+  // Prevent zoom on double-tap
+  let lastTap = 0;
+  document.addEventListener('touchend', function(e) {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+    
+    if (tapLength < 300 && tapLength > 0) {
+      e.preventDefault();
+    }
+    
+    lastTap = currentTime;
+  }, {passive: false});
+});

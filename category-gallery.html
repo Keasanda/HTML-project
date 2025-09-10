@@ -409,6 +409,91 @@
                 font-size: 1.5rem;
             }
         }
+
+.gallery {
+    padding: 2rem 1rem;
+    background-color: var(--white-bg);
+}
+
+.gallery-container {
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.gallery-tile {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    aspect-ratio: 3/4; /* Set a consistent aspect ratio */
+}
+
+.gallery-tile img {
+    width: 100%;
+    height: 100%; /* Changed from auto to 100% */
+    object-fit: cover; /* This ensures the image fills the container */
+    display: block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.gallery-tile:hover img {
+    transform: scale(1.05);
+    filter: brightness(80%);
+}
+
+.gallery-tile.scale img {
+    transform: scaleY(1.03);
+}
+
+.gallery-tile.scale:hover img {
+    transform: scaleY(1.03) scale(1.05);
+}
+
+/* ... (keep all existing styles below the gallery section) ... */
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery {
+        padding: 1rem;
+    }
+    
+    .category-title {
+        font-size: 1.5rem;
+    }
+    
+    .category-description-text {
+        font-size: 1.1rem;
+    }
+    
+    .picture-info h2 {
+        font-size: 1.25rem;
+    }
+    
+    .imageview-info h2 {
+        font-size: 1.5rem;
+    }
+}
+
+
+
     </style>
 </head>
 <body class="category-gallery-page">

@@ -19,6 +19,7 @@
             --gray-600: #4b5563;
             --gray-800: #1f2937;
             --gray-900: #111827;
+            --white-bg: #ffffff;
         }
 
         * {
@@ -64,7 +65,7 @@
         /* Gallery Page Specific Styles */
         .gallery-page {
             min-height: 100vh;
-            background-color: white;
+            background-color: var(--white-bg);
         }
 
         .gallery-header {
@@ -106,7 +107,7 @@
         }
 
         .category-filters-container {
-            background-color: var(--gray-900);
+            background-color: #000000; /* Changed to black */
             border-bottom: 1px solid var(--gray-800);
             padding: 1.5rem 0;
         }
@@ -140,59 +141,67 @@
             background-color: var(--gray-700);
         }
 
-        .gallery-container {
-            max-width: 1400px;
-            margin: 0 auto;
+        /* Updated Gallery Grid to match category-gallery */
+        .gallery {
             padding: 2rem 1rem;
+            background-color: var(--white-bg);
+        }
+
+        .gallery-container {
+            max-width: 1800px;
+            margin: 0 auto;
         }
 
         .gallery-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
         }
 
         .gallery-item {
-            position: relative;
             overflow: hidden;
-            border-radius: 0.5rem;
-            width: 300px;
-            height: 200px;
+            position: relative;
             cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.02);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            aspect-ratio: 3/4;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            display: block;
+            transition: transform 0.3s ease-in-out;
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1);
-            filter: brightness(0.8);
+            transform: scale(1.05);
+            filter: brightness(80%);
+        }
+
+        .gallery-item.scale img {
+            transform: scaleY(1.03);
+        }
+
+        .gallery-item.scale:hover img {
+            transform: scaleY(1.03) scale(1.05);
         }
 
         .gallery-item-info {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            inset: 0;
+            z-index: 10;
+            color: white;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            padding: 1rem;
+            justify-content: center;
+            align-items: flex-start;
             opacity: 0;
             transition: opacity 0.3s;
-            color: white;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
         }
 
         .gallery-item:hover .gallery-item-info {
@@ -200,13 +209,17 @@
         }
 
         .gallery-item-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0.5rem 0;
         }
 
         .gallery-item-description {
-            font-size: 0.875rem;
+            margin: 0.5rem 0;
+            font-size: 1rem;
         }
 
         /* Modal Styles */
@@ -305,6 +318,27 @@
             font-size: 0.875rem;
             margin-top: 1rem;
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery {
+                padding: 1rem;
+            }
+            
+            .gallery-title {
+                font-size: 1.25rem;
+            }
+        }
     </style>
 </head>
 <body class="gallery-page">
@@ -333,10 +367,12 @@
         </div>
     </div>
 
-    <!-- Gallery Grid -->
-    <div class="gallery-container">
-        <div class="gallery-grid" id="gallery-grid">
-            <!-- Images will be dynamically inserted here -->
+    <!-- Gallery Grid - Updated to match category-gallery -->
+    <div class="gallery">
+        <div class="gallery-container">
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Images will be dynamically inserted here -->
+            </div>
         </div>
     </div>
 
@@ -538,17 +574,21 @@
                 ? galleryImages 
                 : galleryImages.filter(image => image.category === category);
             
-            filteredImages.forEach(image => {
+            filteredImages.forEach((image, index) => {
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
-                galleryItem.dataset.category = image.category;
+                
+                // Add scale class to some images for visual variety
+                if (index % 3 === 0) {
+                    galleryItem.classList.add('scale');
+                }
                 
                 galleryItem.innerHTML = `
-                    <img src="${image.src}" alt="${image.title}">
                     <div class="gallery-item-info">
                         <h3 class="gallery-item-title">${image.title}</h3>
                         <p class="gallery-item-description">${image.description}</p>
                     </div>
+                    <img src="${image.src}" alt="${image.title}" loading="lazy">
                 `;
                 
                 galleryItem.addEventListener('click', () => openModal(image));

@@ -511,8 +511,9 @@ h1, h2, h3, h4, h5 {
         .services-title {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #e5e5e5;
+            color: black;
             margin-bottom: 1rem;
+            text-align: center;
         }
         
         @media (min-width: 768px) {
@@ -1760,3 +1761,235 @@ html, body {
     transform: scale(1.05);
 }
 
+  /* Video Showcase Styles */
+        .video-showcase {
+            padding: 5rem 0;
+            background-color: var(--gray-900);
+            position: relative;
+        }
+
+        .video-showcase-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .video-showcase-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .video-showcase-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--light-text);
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .video-showcase-title {
+                font-size: 3rem;
+            }
+        }
+
+        .video-showcase-subtitle {
+            font-size: 1.25rem;
+            color: var(--orange);
+            font-weight: 600;
+        }
+
+        .video-container {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            aspect-ratio: 16/9;
+            background-color: var(--gray-800);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            text-align: center;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-placeholder.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .video-placeholder-content {
+            padding: 2rem;
+        }
+
+        .video-placeholder-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--orange);
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .video-badge {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            color: var(--light-text);
+            font-weight: 600;
+            z-index: 3;
+        }
+        .text-black{
+    color: black;
+        }
+
+
+        /* Impact Section Mobile Improvements */
+.impact-header,
+.impact-subheader {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.impact-subsection {
+    margin-bottom: 3rem;
+}
+
+.partner-logo {
+    width: 6rem;
+    height: 3rem;
+    margin: 0 auto 1rem;
+    background-color: #f1f5f9;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.partner-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.awards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.impact-award-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    text-align: left;
+}
+
+.award-content {
+    flex: 1;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .impact-card-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .impact-stat-number {
+        font-size: 2.5rem;
+    }
+    
+    .impact-stat-label {
+        font-size: 1rem;
+    }
+    
+    .impact-award-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .impact-award-icon {
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 769px) {
+    .impact-card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .awards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Form Validation Styles */
+.form-error {
+    color: #e53e3e;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+    min-height: 1.25rem;
+}
+
+.form-input:invalid, .form-select:invalid, .form-textarea:invalid {
+    border-color: #e53e3e;
+}
+
+.form-input:valid, .form-select:valid, .form-textarea:valid {
+    border-color: #38a169;
+}
+
+.form-status {
+    padding: 1rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1.5rem;
+    display: none;
+}
+
+.form-status.success {
+    background-color: #c6f6d5;
+    color: #22543d;
+    display: block;
+}
+
+.form-status.error {
+    background-color: #fed7d7;
+    color: #742a2a;
+    display: block;
+}
+
+.form-security-note {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}

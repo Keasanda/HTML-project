@@ -189,51 +189,6 @@ items.forEach(item => {
 });
 
 
- // Video Showcase functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const videoSection = document.getElementById('video-showcase');
-            const videoPlaceholder = document.getElementById('video-placeholder');
-            const videoIframe = document.getElementById('video-iframe');
-            
-            // Function to play video
-            function playVideo() {
-                videoPlaceholder.style.display = 'none';
-                videoIframe.classList.add('visible');
-                
-                // Update the src to autoplay the video
-                const currentSrc = videoIframe.src;
-                if (!currentSrc.includes('autoplay=1')) {
-                    videoIframe.src = currentSrc + '&autoplay=1&mute=1';
-                }
-            }
-            
-            // Function to pause video
-            function pauseVideo() {
-                // We'll just hide the iframe and show placeholder
-                // Note: YouTube iframe API would be better for actual pause control
-                videoPlaceholder.style.display = 'flex';
-                videoIframe.classList.remove('visible');
-            }
-            
-            // Click on placeholder to play
-            videoPlaceholder.addEventListener('click', playVideo);
-            
-            // Intersection Observer to play when visible
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            playVideo();
-                        } else {
-                            pauseVideo();
-                        }
-                    });
-                },
-                { threshold: 0.5 } // Play when 50% of the element is visible
-            );
-            
-            observer.observe(videoSection);
-        });
 
 
 
@@ -361,4 +316,171 @@ document.addEventListener('DOMContentLoaded', function() {
     
     lastTap = currentTime;
   }, {passive: false});
+});
+
+     // YouTube API setup for video autoplay
+        let player;
+        let isVideoStarted = false;
+        let wasVideoPlaying = false;
+        
+        // Load YouTube IFrame API
+        const tag = document.createElement('script');
+        tag.src = "https://youtu.be/Ellbj3kieqs?list=TLGGQOrXJe2KdIcxMDA5MjAyNQ";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // Initialize YouTube player when API is ready
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '100%',
+                width: '100%',
+                videoId: 'Ellbj3kieqs',
+                playerVars: {
+                    'playsinline': 1,
+                    'modestbranding': 1,
+                    'rel': 0,
+                    'controls': 1,
+                    'showinfo': 0
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Set up click handler for placeholder
+            const placeholder = document.getElementById('video-placeholder');
+            placeholder.addEventListener('click', function() {
+                placeholder.classList.add('hidden');
+                event.target.playVideo();
+                isVideoStarted = true;
+                wasVideoPlaying = true;
+            });
+            
+            // Set up Intersection Observer for autoplay when visible
+            const observer = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting && isVideoStarted) {
+                    if (wasVideoPlaying) {
+                        player.playVideo();
+                    }
+                } else if (isVideoStarted) {
+                    wasVideoPlaying = !player.getPlayerState() === YT.PlayerState.PAUSED;
+                    player.pauseVideo();
+                }
+            }, { threshold: 0.5 });
+            
+            observer.observe(document.getElementById('video-showcase'));
+        }
+
+        function onPlayerStateChange(event) {
+            // Handle video end - show placeholder again
+            if (event.data == YT.PlayerState.ENDED) {
+                document.getElementById('video-placeholder').classList.remove('hidden');
+                isVideoStarted = false;
+            }
+        }
+
+        // Contact Form Handling
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+    
+    if (contactForm) {
+        // Validate form on submit
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const service = document.getElementById('service');
+            const message = document.getElementById('message');
+            const hpname = document.getElementById('hpname');
+            
+            let isValid = true;
+            
+            // Reset error messages
+            document.querySelectorAll('.form-error').forEach(el => {
+                el.textContent = '';
+            });
+            
+            // Honeypot check
+            if (hpname.value !== '') {
+                console.log('Bot detected');
+                formStatus.textContent = 'There was an error submitting the form. Please try again.';
+                formStatus.className = 'form-status error';
+                return false;
+            }
+            
+            // Name validation
+            if (!name.value.trim() || !/^[A-Za-z ]+$/.test(name.value)) {
+                document.getElementById('name-error').textContent = 'Please enter a valid name';
+                isValid = false;
+            }
+            
+            // Email validation
+            if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                document.getElementById('email-error').textContent = 'Please enter a valid email address';
+                isValid = false;
+            }
+            
+            // Service validation
+            if (!service.value) {
+                document.getElementById('service-error').textContent = 'Please select a service';
+                isValid = false;
+            }
+            
+            // Message validation
+            if (!message.value.trim() || message.value.length < 10) {
+                document.getElementById('message-error').textContent = 'Please provide more details (at least 10 characters)';
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                formStatus.textContent = 'Please correct the errors above';
+                formStatus.className = 'form-status error';
+                return false;
+            }
+            
+            // If using Formspree (replace YOUR_FORM_ID with your actual Formspree form ID)
+            // For now, we'll simulate a successful submission
+            simulateFormSubmission();
+        });
+    }
+    
+    function simulateFormSubmission() {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="bi bi-arrow-repeat spin"></i> Sending...';
+        
+        // Simulate API call
+        setTimeout(() => {
+            formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+            formStatus.className = 'form-status success';
+            contactForm.reset();
+            
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="bi bi-send"></i> Send Message';
+            
+            // Hide status message after 5 seconds
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+            }, 5000);
+        }, 1500);
+    }
+    
+    // Add spinning animation for the submit button
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+    `;
+    document.head.appendChild(style);
 });

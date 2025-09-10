@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emeka Studios - Photography & Videography</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="https://i.postimg.cc/q7JtXQCN/Screenshot-2025-09-02-132618.png" alt="Emeka Studios Logo">
+                <span>Emeka Studios</span>
+            </div>
+            
+      <div class="nav-menu">
+    <a href="#home" class="nav-link">Home</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#portfolio" class="nav-link">Portfolio</a>
+    <a href="#impact" class="nav-link">Impact</a>
+    <a href="#" class="nav-link special" id="gallery-link">Gallery</a>
+    <a href="#contact" class="nav-link">Contact</a>
+</div>
+            
+            <button class="mobile-menu-btn" id="mobile-menu-toggle">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="nav-brand">
+                <img src="https://i.postimg.cc/q7JtXQCN/Screenshot-2025-09-02-132618.png" alt="Emeka Studios Logo">
+                <span>Emeka Studios</span>
+            </div>
+            <button class="mobile-menu-btn" id="close-mobile-menu">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        
+     <ul class="mobile-menu-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#" id="mobile-gallery-link" class="special">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+</ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-slide active" style="background-image: url('https://i.postimg.cc/Sx9h8j8v/Whats-App-Image-2025-09-03-at-15-31-29-edfab46d.jpg')">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop')">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop')">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop')">
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">Emeka Studios</h1>
+            <h2 class="hero-subtitle">Bringing stories to life through photography, video, and content creation.</h2>
+            <p class="hero-description">Visual storytelling for brands, businesses, and creatives. We help you connect, grow, and leave a lasting impact.</p>
+            
+            <div class="hero-buttons">
+                <button class="hero-btn btn-primary" id="view-gallery-btn">View Gallery</button>
+                <a href="#contact" class="hero-btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        
+        <div class="carousel-dots">
+            <div class="dot active" data-slide="0"></div>
+            <div class="dot" data-slide="1"></div>
+            <div class="dot" data-slide="2"></div>
+            <div class="dot" data-slide="3"></div>
+        </div>
+        
+        <a href="#about" class="scroll-down">
+            <i class="bi bi-chevron-down fs-1"></i>
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2 class="about-title">
+                        Your Story. Our Lens. <span class="text-orange">Emeka Studios.</span>
+                    </h2>
+                    <p class="about-text">
+                        At Emeka Studios, we believe every story deserves to be seen, heard, and felt. We are a creative media company founded by Tshepiso Makoni, a visual storyteller passionate about elevating township, city, and rural businesses through authentic, bold, and intentional content.
+                    </p>
+                    <p class="about-text">
+                        From photography and videography to social media content, Emeka Studios partners with entrepreneurs, brands, and communities to help you build your identity, showcase your vision, and stand out in the market.
+                    </p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="bi bi-camera"></i>
+                            </div>
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">African Excellence</div>
+                        </div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">Community Driven</div>
+                        </div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="bi bi-award"></i>
+                            </div>
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Collaboration & Creativity</div>
+                        </div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="bi bi-heart"></i>
+                            </div>
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Storytelling Purpose</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <div class="image-container">
+                        <img src="https://i.postimg.cc/G2zN6gHZ/Whats-App-Image-lololo.jpg" alt="Photographer portrait">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+     <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="services-container">
+            <div class="services-header">
+                <h2 class="services-title"><span class="text-orange">What We Do</span></h2>
+                <p class="services-subtitle">Comprehensive media services tailored to elevate your brand and tell your unique story.</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Photography Service -->
+                <div class="service-card">
+                    <div class="service-bg">
+                        <img src="https://i.postimg.cc/gjMXZ6YL/96-A887-A9-2-C31-4-AB0-81-D6-CA189-B08-B432.jpg" alt="Photography">
+                        <div class="service-bg-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <div>
+                            <h3 class="service-title">Photography</h3>
+                            <p class="service-description">Professional photos for brands, events, real estate, portraits, and products.</p>
+                            <ul class="service-features">
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Brand Photography</span>
+                                </li>
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Event Coverage</span>
+                                </li>
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Product Photography</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="service-price">Starting at R1700.00</div>
+                            <div class="service-duration">Duration: 1-2 hours</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Videography Service -->
+                <div class="service-card">
+                    <div class="service-bg">
+                        <img src="https://i.postimg.cc/QdK9FtvV/2025-04-17-Sanlam-Financial-Planning-017.jpg" alt="Videography">
+                        <div class="service-bg-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <div>
+                            <h3 class="service-title">Videography</h3>
+                            <p class="service-description">Telling your story through cinematic, impactful visuals.</p>
+                            <ul class="service-features">
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Brand Videos</span>
+                                </li>
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Documentary Projects</span>
+                                </li>
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Event Highlights</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="service-price">Starting at R400.00</div>
+                            <div class="service-duration">Duration: 1-2 hours</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Creation Service -->
+                <div class="service-card">
+                    <div class="service-bg">
+                        <img src="https://i.postimg.cc/5NPVzS82/2025-06-05-Clareb-accessories-051.jpg" alt="Content Creation">
+                        <div class="service-bg-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <div>
+                            <h3 class="service-title">Content Creation Packages</h3>
+                            <p class="service-description">Custom social media reels, promos, and lifestyle content for digital marketing.</p>
+                            <ul class="service-features">
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Social Media Content</span>
+                                </li>
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Promotional Reels</span>
+                                </li>
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Digital Marketing Assets</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="service-price">Starting at R1700.00</div>
+                            <div class="service-duration">Duration: 3-6 hours</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Workshops Service -->
+                <div class="service-card">
+                    <div class="service-bg">
+                        <img src="https://i.postimg.cc/Y9Y4qqDY/26.png" alt="Workshops">
+                        <div class="service-bg-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <div>
+                            <h3 class="service-title">Workshops & Masterclasses</h3>
+                            <p class="service-description">Training entrepreneurs, content creators, and youth in content creation and branding.</p>
+                            <ul class="service-features">
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Content Creation Basics</span>
+                                </li>
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Brand Development</span>
+                                </li>
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Youth Empowerment</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="service-price">Starting at R350</div>
+                            <div class="service-duration">Duration: 2-4 hours</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Brand Strategy Service -->
+                <div class="service-card">
+                    <div class="service-bg">
+                        <img src="https://i.postimg.cc/52bVQ97b/4.png" alt="Brand Strategy">
+                        <div class="service-bg-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <div>
+                            <h3 class="service-title">Brand Strategy & Storytelling</h3>
+                            <p class="service-description">Helping you define your brand voice, story, and visual identity.</p>
+                            <ul class="service-features">
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Brand Identity Development</span>
+                                </li>
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Storytelling Consultation</span>
+                                </li>
+                                <li class="service-feature">
+                                    <div class="feature-bullet"></div>
+                                    <span>Visual Strategy</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="service-price">Starting at R700.00</div>
+                            <div class="service-duration">Duration: 2-8 hours</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Booking Card -->
+                <div class="service-card booking-card">
+                    <div class="service-content">
+                        <div>
+                            <h3 class="service-title">Ready to elevate your brand?</h3>
+                            <p class="service-description">Explore our comprehensive portfolio showcasing exceptional visual storytelling across various photography styles and creative disciplines. Witness firsthand how we transform ordinary moments into extraordinary visual narratives that capture the essence of every story we tell.</p>
+                        </div>
+                        <div>
+                            <button class="service-button" id="book-service-btn">Book a service</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="services-cta">
+                <p class="services-cta-text">Ready to see my work? Explore my portfolio to see examples of each photography style.</p>
+                <button class="portfolio-button" id="view-portfolio-btn">View Portfolio</button>
+            </div>
+        </div>
+    </section>
+
+
+ 
+    <!-- Portfolio Section -->
+    <section class="portfolio-section">
+        <div class="container">
+            <div class="services-header">
+                <h2 class="services-title"><span class="text-orange">Our Work Speaks for Itself</span></h2>
+                <p class="services-subtitle">A showcase of our best projects across various industries and mediums.</p>
+            </div>
+            
+            <div class="category-filters">
+                <button class="category-filter active" data-category="all">All Work</button>
+                <button class="category-filter" data-category="wedding">Weddings</button>
+                <button class="category-filter" data-category="portrait">Portraits</button>
+                <button class="category-filter" data-category="event">Events</button>
+                <button class="category-filter" data-category="lifestyle">Lifestyle & Real Estate</button>
+                <button class="category-filter" data-category="product">Product Photography</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- Corporate Events -->
+                <div class="portfolio-item" data-category="corporate">
+                    <img src="https://i.postimg.cc/d0pbHFYx/Screenshot-2025-09-03-160903.png" alt="Corporate Events">
+                    <div class="portfolio-overlay">
+                        <h3>Corporate Events</h3>
+                        <p>Professional business photography and team portraits</p>
+                        <span>25+ Projects</span>
+                    </div>
+                </div>
+                
+                <!-- Wedding Photography -->
+                <div class="portfolio-item" data-category="wedding">
+                    <img src="https://i.postimg.cc/BQSVCbFv/Screenshot-2025-09-03-162045.png" alt="Wedding Photography">
+                    <div class="portfolio-overlay">
+                        <h3>Wedding Photography</h3>
+                        <p>Romantic ceremonies and celebration moments</p>
+                        <span>50+ Weddings</span>
+                    </div>
+                </div>
+                
+                <!-- Portrait Sessions -->
+                <div class="portfolio-item" data-category="portrait">
+                    <img src="https://i.postimg.cc/Ss3QVDFq/EME2774.jpg" alt="Portrait Sessions">
+                    <div class="portfolio-overlay">
+                        <h3>Portrait Sessions</h3>
+                        <p>Family, senior, and professional headshots</p>
+                        <span>100+ Sessions</span>
+                    </div>
+                </div>
+                
+                <!-- Event Photography -->
+                <div class="portfolio-item" data-category="event">
+                    <img src="https://i.postimg.cc/26hjcnzZ/EME8299.jpg" alt="Event Photography">
+                    <div class="portfolio-overlay">
+                        <h3>Event Photography</h3>
+                        <p>Birthdays, conferences, and special celebrations</p>
+                        <span>75+ Events</span>
+                    </div>
+                </div>
+                
+                <!-- Lifestyle Photography -->
+                <div class="portfolio-item" data-category="lifestyle">
+                    <img src="https://i.postimg.cc/jS59dKng/2025-07-14-Mphidi-Art-Gallery-23.jpg" alt="Lifestyle Photography">
+                    <div class="portfolio-overlay">
+                        <h3>Lifestyle Photography & Real Estate</h3>
+                        <p>Urban, fashion, and adventure photography</p>
+                        <span>40+ Shoots</span>
+                    </div>
+                </div>
+                
+                <!-- Product Photography -->
+                <div class="portfolio-item" data-category="product">
+                    <img src="https://i.postimg.cc/RZDXrsHY/2025-06-12-SIKHO-C-103.jpg" alt="Product Photography">
+                    <div class="portfolio-overlay">
+                        <h3>Product Photography</h3>
+                        <p>Professional product shots for e-commerce and marketing</p>
+                        <span>60+ Products</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="services-cta">
+                <button class="portfolio-button" id="explore-portfolio-btn">Explore Complete Portfolio</button>
+            </div>
+        </div>
+    </section>
+
+
+   <!-- Video Showcase Section -->
+    <section id="video-showcase" class="video-showcase">
+        <div class="video-showcase-container">
+            <div class="video-showcase-header">
+                <h2 class="video-showcase-title">Videography Showcase</h2>
+                <p class="video-showcase-subtitle">See our work in motion</p>
+            </div>
+            
+            <div class="video-container">
+                <div class="video-placeholder" id="video-placeholder">
+                    <div class="video-placeholder-content">
+                        <div class="video-placeholder-icon">
+                            <i class="bi bi-play-circle"></i>
+                        </div>
+                        <p>Video will play when visible</p>
+                    </div>
+                </div>
+                <iframe 
+                    class="video-iframe" 
+                    id="video-iframe"
+                    src="https://www.youtube.com/embed/Ellbj3kieqs?rel=0&modestbranding=1"
+                    title="Videography Showreel"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+                <div class="video-badge">Videography</div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Impact Section -->
+    <section id="impact" class="impact-section">
+        <div class="impact-container">
+            <div class="text-center mb-16">
+                <h2 class="impact-title">
+                    Client <span class="text-black">Impact</span>
+                </h2>
+                <p class="impact-subtitle">
+                    Don't just take my word for it - see the results and recognitions that speak for themselves.
+                </p>
+            </div>
+
+            <div class="impact-grid">
+                <div class="impact-stat">
+                    <div class="impact-stat-number">98%</div>
+                    <div class="impact-stat-label">Client Satisfaction</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat-number">24hrs</div>
+                    <div class="impact-stat-label">Average Delivery</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat-number">5★</div>
+                    <div class="impact-stat-label">Average Rating</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat-number">100%</div>
+                    <div class="impact-stat-label">Repeat Clients</div>
+                </div>
+            </div>
+
+            <!-- Partners & Collaborations -->
+            <div class="mb-16">
+                <div class="text-center mb-12">
+                    <h3 class="impact-title">
+                        Partners & <span class="text-black">Collaborations</span>
+                    </h3>
+                    <p class="impact-subtitle">
+                        Trusted by leading organizations and brands
+                    </p>
+                </div>
+                
+                <div class="impact-card-grid">
+                    <div class="impact-card">
+                        <div class="w-24 h-12 mx-auto mb-4 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                            <img
+                                src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop"
+                                alt="Sanlam logo"
+                                class="w-full h-full object-cover"
+                            >
+                        </div>
+                        <h4>Sanlam</h4>
+                    </div>
+                    <div class="impact-card">
+                        <div class="w-24 h-12 mx-auto mb-4 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                            <img
+                                src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop"
+                                alt="YCC logo"
+                                class="w-full h-full object-cover"
+                            >
+                        </div>
+                        <h4>YCC</h4>
+                    </div>
+                    <div class="impact-card">
+                        <div class="w-24 h-12 mx-auto mb-4 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                            <img
+                                src="https://images.pexels.com/photos/3184293/pexels-photo-3184293.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop"
+                                alt="RLabs logo"
+                                class="w-full h-full object-cover"
+                            >
+                        </div>
+                        <h4>RLabs</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recognition & Awards -->
+            <div class="mb-16">
+                <div class="text-center mb-12">
+                    <h3 class="impact-title">
+                        Recognition & <span class="text-black">Awards</span>
+                    </h3>
+                    <p class="impact-subtitle">
+                        Honored for excellence in visual storytelling and business leadership
+                    </p>
+                </div>
+                
+                <div class="impact-card-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="impact-card impact-award-card">
+                        <div class="impact-award-icon">
+                            <i class="bi bi-award"></i>
+                        </div>
+                        <div>
+                            <h4>2025 Media Businesswomen of the Year</h4>
+                            <p>Media Excellence Awards</p>
+                            <span class="impact-award-badge">2025</span>
+                        </div>
+                    </div>
+                    <div class="impact-card impact-award-card">
+                        <div class="impact-award-icon">
+                            <i class="bi bi-award"></i>
+                        </div>
+                        <div>
+                            <h4>Visual Storytelling Excellence Award</h4>
+                            <p>Photography Institute</p>
+                            <span class="impact-award-badge">2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="impact-cta">
+                <p class="impact-subtitle">
+                    Ready to create beautiful memories together?
+                </p>
+                <a href="#contact" class="portfolio-button">Start Your Project</a>
+            </div>
+        </div>
+    </section>
+
+
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <div class="text-center mb-16">
+            <h2 class="services-title">
+                Get In <span class="text-orange">Touch</span>
+            </h2>
+            <p class="services-subtitle">
+                Ready to capture your special moments? Let's discuss your photography needs and create something beautiful together.
+            </p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3 class="contact-subtitle">Let's Start a Conversation</h3>
+                
+                <div class="contact-details">
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <div>
+                            <div class="contact-label">Email</div>
+                            <a href="mailto:hello@emekastudios.com" class="contact-link">hello@emekastudios.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <div>
+                            <div class="contact-label">Phone</div>
+                            <a href="tel:+27123456789" class="contact-link">+27 123 456 789</a>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <div>
+                            <div class="contact-label">Location</div>
+                            <span class="contact-text">South Africa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-section">
+                    <h4 class="social-title">Follow My Work</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="response-promise">
+                    <h4 class="promise-title">Quick Response Promise</h4>
+                    <p class="promise-text">
+                        I typically respond to all inquiries within 24 hours. For urgent bookings, please call directly.
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-form-container">
+                <form class="contact-form" id="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" class="form-label">
+                                Your Name *
+                            </label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                required
+                                class="form-input"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">
+                                Email Address *
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                                class="form-input"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service" class="form-label">
+                            Service Interested In *
+                        </label>
+                        <select
+                            id="service"
+                            name="service"
+                            required
+                            class="form-select"
+                        >
+                            <option value="">Select a service</option>
+                            <option value="photography">Photography</option>
+                            <option value="videography">Videography</option>
+                            <option value="content-creation">Content Creation</option>
+                            <option value="workshops">Workshops & Masterclasses</option>
+                            <option value="brand-strategy">Brand Strategy</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">
+                            Tell me about your vision *
+                        </label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="5"
+                            required
+                            placeholder="Share details about your event, preferred style, timeline, and any special requests..."
+                            class="form-textarea"
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit-btn">
+                        <i class="bi bi-send"></i>
+                        <span>Send Message</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="https://i.postimg.cc/q7JtXQCN/Screenshot-2025-09-02-132618.png" alt="Emeka Studios Logo">
+                    <span>Emeka Studios</span>
+                </div>
+                <p class="footer-description">
+                    Capturing life's beautiful moments with artistic vision and professional excellence. 
+                    Creating memories that last a lifetime.
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#impact">Impact</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-services">
+                <h3 class="footer-title">Services</h3>
+                <ul class="footer-menu">
+                    <li>Wedding Photography</li>
+                    <li>Portrait Sessions</li>
+                    <li>Event Photography</li>
+                    <li>Lifestyle Shoots</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="copyright">
+                © <span id="current-year"></span> Emeka Studios. All rights reserved.
+            </p>
+            <p class="made-with">
+                Made with <i class="bi bi-heart-fill"></i> by Emeka Studios
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

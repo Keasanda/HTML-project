@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Gallery - Emeka Studios</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange: #f97316;
+            --orange-dark: #ea580c;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #000000;
+            --light-text: #f8fafc;
+            --gray-text: #94a3b8;
+            --gray-200: #e5e5e5;
+            --gray-400: #9ca3af;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--light-text);
+            background-color: var(--darker-bg);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .text-orange {
+            color: var(--orange) !important;
+        }
+
+        .bg-orange {
+            background-color: var(--orange) !important;
+        }
+
+        .btn-orange {
+            background-color: var(--orange);
+            border-color: var(--orange);
+            color: white;
+        }
+
+        .btn-orange:hover {
+            background-color: var(--orange-dark);
+            border-color: var(--orange-dark);
+            color: white;
+        }
+
+        /* Category Gallery Page Specific Styles */
+        .category-gallery-page {
+            min-height: 100vh;
+            background-color: var(--darker-bg);
+        }
+
+        .category-header {
+            background-color: var(--darker-bg);
+            border-bottom: 1px solid var(--gray-800);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .category-header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray-200);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-button:hover {
+            color: var(--orange);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-200);
+            text-align: center;
+        }
+
+        .category-image-count {
+            color: var(--gray-400);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .category-description {
+            background-color: var(--darker-bg);
+            border-bottom: 1px solid var(--gray-800);
+            padding: 2rem 0;
+        }
+
+        .category-description-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .category-description-text {
+            font-size: 1.125rem;
+            color: var(--gray-200);
+            line-height: 1.7;
+        }
+
+        .category-gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .category-gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .category-gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            width: 300px;
+            height: 200px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .category-gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .category-gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .category-gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.8);
+        }
+
+        .category-gallery-item-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: white;
+        }
+
+        .category-gallery-item:hover .category-gallery-item-info {
+            opacity: 1;
+        }
+
+        .category-gallery-item-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .category-gallery-item-date {
+            font-size: 0.875rem;
+            color: var(--gray-200);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--darker-bg);
+            border-radius: 0.5rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .modal-content {
+                flex-direction: row;
+                max-width: 80vw;
+            }
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 50vh;
+            object-fit: contain;
+        }
+
+        @media (min-width: 768px) {
+            .modal-image {
+                width: 50%;
+                max-height: 80vh;
+            }
+        }
+
+        .modal-info {
+            padding: 1.5rem;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .modal-info {
+                width: 50%;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--orange);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light-text);
+        }
+
+        .modal-description {
+            margin-bottom: 1rem;
+            color: var(--gray-200);
+        }
+
+        .modal-date {
+            color: var(--orange);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-category {
+            display: inline-block;
+            background-color: var(--orange);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .book-session-btn {
+            background-color: var(--orange);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .book-session-btn:hover {
+            background-color: var(--orange-dark);
+        }
+
+        .not-found-container {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .not-found-icon {
+            font-size: 4rem;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+
+        .not-found-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light-text);
+        }
+
+        .not-found-text {
+            margin-bottom: 2rem;
+            color: var(--gray-200);
+        }
+    </style>
+</head>
+<body class="category-gallery-page">
+    <!-- Category Header -->
+    <header class="category-header">
+        <div class="category-header-container">
+            <a href="gallery.html" class="back-button">
+                <i class="bi bi-arrow-left"></i>
+                <span>Back to Gallery</span>
+            </a>
+            <div>
+                <h1 class="category-title" id="category-title">Category Gallery</h1>
+                <p class="category-image-count" id="image-count">0 Images</p>
+            </div>
+            <div></div> <!-- Empty div for spacing -->
+        </div>
+    </header>
+
+    <!-- Category Description -->
+    <div class="category-description">
+        <div class="category-description-container">
+            <p class="category-description-text" id="category-description"></p>
+        </div>
+    </div>
+
+    <!-- Category Gallery Grid -->
+    <div class="category-gallery-container">
+        <div class="category-gallery-grid" id="category-gallery-grid">
+            <!-- Images will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <img class="modal-image" id="modal-image" src="" alt="">
+            <div class="modal-info">
+                <h2 class="modal-title" id="modal-title"></h2>
+                <p class="modal-description" id="modal-description"></p>
+                <p class="modal-date" id="modal-date"></p>
+                <span class="modal-category" id="modal-category"></span>
+                <button class="book-session-btn" id="book-session-btn">Book Similar Session</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Not Found Section (hidden by default) -->
+    <div class="not-found-container" id="not-found-container" style="display: none;">
+        <div class="not-found-icon">
+            <i class="bi bi-camera"></i>
+        </div>
+        <h2 class="not-found-title">Category Not Found</h2>
+        <p class="not-found-text">The requested category could not be found. Please check the URL and try again.</p>
+        <a href="gallery.html" class="back-button">
+            <i class="bi bi-arrow-left"></i>
+            <span>Back to Gallery</span>
+        </a>
+    </div>
+
+    <script>
+        // Category data
+        const categoryData = {
+            wedding: {
+                title: 'Wedding Photography',
+                description: 'Capturing the magic of your special day with timeless elegance and artistic vision',
+                images: [
+                    {
+                        id: 1,
+                        src: 'https://i.postimg.cc/x87JZhq1/Screenshot-2025-09-04-162751.png',
+                        title: 'Romantic Garden Wedding',
+                        description: 'A beautiful outdoor ceremony captured in golden hour light with natural romance',
+                        date: 'June 2024'
+                    },
+                    {
+                        id: 2,
+                        src: 'https://i.postimg.cc/sXPCqhXQ/Screenshot-2025-09-04-162843.png',
+                        title: 'Elegant Reception',
+                        description: 'Celebration moments filled with joy, laughter, and unforgettable memories',
+                        date: 'May 2024'
+                    },
+                    {
+                        id: 3,
+                        src: 'https://i.postimg.cc/mDs0Ygwb/Screenshot-2025-09-04-162910.png',
+                        title: 'Wedding Ceremony',
+                        description: 'Sacred moments of love and commitment in a beautiful church setting',
+                        date: 'April 2024'
+                    },
+                    {
+                        id: 4,
+                        src: 'https://i.postimg.cc/gkZHWHpT/Screenshot-2025-09-04-162725.png',
+                        title: 'Bridal Portrait',
+                        description: 'Stunning bridal photography with natural lighting and elegant composition',
+                        date: 'March 2024'
+                    },
+                    {
+                        id: 5,
+                        src: 'https://i.postimg.cc/fyZSQmf6/Screenshot-2025-09-04-163837.png',
+                        title: 'First Dance',
+                        description: 'Intimate moments of the couple\'s first dance as newlyweds',
+                        date: 'January 2024'
+                    }
+                ]
+            },
+            portrait: {
+                title: 'Portrait Photography',
+                description: 'Professional portraits that capture personality, emotion, and authentic moments',
+                images: [
+                    {
+                        id: 6,
+                        src: 'https://i.postimg.cc/9MjPVvFL/Alvada-4.jpg',
+                        title: 'Family Portrait Session',
+                        description: 'Capturing family bonds and connections in a natural outdoor setting',
+                        date: 'June 2024'
+                    },
+                    {
+                        id: 7,
+                        src: 'https://i.postimg.cc/mgq0Xwb2/Screenshot-2025-09-04-164935.png',
+                        title: 'Senior Portraits',
+                        description: 'Graduation memories that last a lifetime with professional styling',
+                        date: 'May 2024'
+                    },
+                    {
+                        id: 8,
+                        src: 'https://i.postimg.cc/Y9spQwG3/48-Diana-Tsutsa.jpg',
+                        title: 'Professional Headshots',
+                        description: 'Corporate headshots with personality and professional appeal',
+                        date: 'April 2024'
+                    },
+                    {
+                        id: 9,
+                        src: 'https://i.postimg.cc/wjtrmmhK/Screenshot-2025-09-04-163218.png',
+                        title: 'Maternity Session',
+                        description: 'Beautiful expecting mother portraits celebrating new life',
+                        date: 'March 2024'
+                    },
+                    {
+                        id: 10,
+                        src: 'https://i.postimg.cc/DwbCZKTn/Screenshot-2025-09-04-165630.png',
+                        title: 'Couple Session',
+                        description: 'Romantic couple photography in beautiful natural settings',
+                        date: 'January 2024'
+                    }
+                ]
+            },
+            event: {
+                title: 'Event Photography',
+                description: 'Professional event coverage that captures every important moment and emotion',
+                images: [
+                    {
+                        id: 11,
+                        src: 'https://i.postimg.cc/pVzTzwTW/EME8228-2.jpg',
+                        title: 'Corporate Event',
+                        description: 'Professional business gathering documentation with attention to detail',
+                        date: 'June 2024'
+                    },
+                    {
+                        id: 12,
+                        src: 'https://i.postimg.cc/yYn7TszH/EME8142-1.jpg',
+                        title: 'Birthday Celebration',
+                        description: 'Joyful birthday party moments with family and friends',
+                        date: 'May 2024'
+                    },
+                    {
+                        id: 13,
+                        src: 'https://i.postimg.cc/1tNR7Xxb/Screenshot-2025-09-04-163020.png',
+                        title: 'Conference Coverage',
+                        description: 'Professional conference and networking event documentation',
+                        date: 'April 2024'
+                    },
+                    {
+                        id: 14,
+                        src: 'https://i.postimg.cc/9Fkn2nd9/Screenshot-2025-09-04-220722.png',
+                        title: 'Charity Gala',
+                        description: 'Elegant charity fundraising event with VIP guests',
+                        date: 'February 2024'
+                    },
+                    {
+                        id: 15,
+                        src: 'https://i.postimg.cc/R0YVTfYc/Screenshot-2025-09-04-163005.png',
+                        title: 'Awards Ceremony',
+                        description: 'Prestigious awards ceremony with professional coverage',
+                        date: 'January 2024'
+                    }
+                ]
+            },
+            lifestyle: {
+                title: 'Lifestyle Photography & Real Estate',
+                description: 'Authentic lifestyle photography that captures real moments and genuine emotions',
+                images: [
+                    {
+                        id: 16,
+                        src: 'https://i.postimg.cc/3xTPPZVK/2025-06-06-Sere-Mhati-03.jpg',
+                        title: 'Urban Lifestyle',
+                        description: 'City life and urban exploration with modern aesthetics',
+                        date: 'June 2024'
+                    },
+                    {
+                        id: 17,
+                        src: 'https://i.postimg.cc/W3hKMYF7/2025-06-06-Sere-Mhati-02.jpg',
+                        title: 'Fashion Lifestyle',
+                        description: 'Contemporary fashion and style photography with artistic flair',
+                        date: 'May 2024'
+                    },
+                    {
+                        id: 18,
+                        src: 'https://i.postimg.cc/Y9Y4qqDY/26.png',
+                        title: 'Outdoor Adventure',
+                        description: 'Adventure and outdoor lifestyle captures in natural settings',
+                        date: 'April 2024'
+                    },
+                    {
+                        id: 19,
+                        src: 'https://i.postimg.cc/NjRQXFq0/2025-06-06-Design-26-Foundation-007.jpg',
+                        title: 'Beach Lifestyle',
+                        description: 'Relaxed beach lifestyle photography with natural lighting',
+                        date: 'March 2024'
+                    },
+                    {
+                        id: 20,
+                        src: 'https://i.postimg.cc/HsXLwBbH/2025-06-05-Clareb-accessories-160.jpg',
+                        title: 'Travel Lifestyle',
+                        description: 'Travel and adventure lifestyle photography around the world',
+                        date: 'January 2024'
+                    }
+                ]
+            },
+            corporate: {
+                title: 'Corporate Photography',
+                description: 'Professional corporate photography for businesses, teams, and executive portraits',
+                images: [
+                    {
+                        id: 21,
+                        src: 'https://i.postimg.cc/y6T1xwPq/KYIB-26.jpg',
+                        title: 'Corporate Team',
+                        description: 'Professional team photography for businesses and organizations',
+                        date: 'June 2024'
+                    },
+                    {
+                        id: 22,
+                        src: 'https://i.postimg.cc/6Qzcy6y2/2025-06-06-Rich-Aunties-77.jpg',
+                        title: 'Executive Portraits',
+                        description: 'High-end executive and leadership portraits for corporate use',
+                        date: 'May 2024'
+                    },
+                    {
+                        id: 23,
+                        src: 'https://i.postimg.cc/ZR5SdqH1/Shared-from-Lightroom-mobile.jpg',
+                        title: 'Office Environment',
+                        description: 'Professional workplace photography showcasing company culture',
+                        date: 'April 2024'
+                    },
+                    {
+                        id: 24,
+                        src: 'https://i.postimg.cc/dDMmzLSX/2025-03-18-TB-PROOF-SYMPOSIUM-027.jpg',
+                        title: 'Business Conference',
+                        description: 'Corporate conference and meeting photography',
+                        date: 'March 2024'
+                    },
+                    {
+                        id: 25,
+                        src: 'https://i.postimg.cc/PxSd3DNX/2025-03-18-TB-PROOF-SYMPOSIUM-026.jpg',
+                        title: 'Company Culture',
+                        description: 'Authentic workplace moments showcasing team collaboration',
+                        date: 'January 2024'
+                    }
+                ]
+            },
+            product: {
+                title: 'Product Photography',
+                description: 'Professional product photography that showcases your products in the best light',
+                images: [
+                    {
+                        id: 26,
+                        src: 'https://i.postimg.cc/ncmvsS8B/2025-06-06-Rich-Aunties-01.jpg',
+                        title: 'E-commerce Product Shot',
+                        description: 'Clean product photography for online stores and catalogs',
+                        date: 'June 2024'
+                    },
+                    {
+                        id: 27,
+                        src: 'https://i.postimg.cc/FFycbWs4/2025-06-06-Sere-Mhati-19.jpg',
+                        title: 'Lifestyle Product Photography',
+                        description: 'Products shown in natural use contexts and environments',
+                        date: 'May 2024'
+                    },
+                    {
+                        id: 28,
+                        src: 'https://i.postimg.cc/fbzgZt23/2025-06-06-Rich-Aunties-03.jpg',
+                        title: 'Food Photography',
+                        description: 'Appetizing food and beverage photography for menus and marketing',
+                        date: 'April 2024'
+                    },
+                    {
+                        id: 29,
+                        src: 'https://i.postimg.cc/XqsYHyzw/2025-06-03-Nakai-Beauty-Products-40.jpg',
+                        title: 'Tech Product Showcase',
+                        description: 'Professional technology product photography with clean backgrounds',
+                        date: 'March 2024'
+                    },
+                    {
+                        id: 30,
+                        src: 'https://i.postimg.cc/HkdCcLvm/Akido-Malabela-5.jpg',
+                        title: 'Beauty Product Photography',
+                        description: 'Cosmetics and beauty products with professional lighting',
+                        date: 'January 2024'
+                    }
+                ]
+            }
+        };
+
+        // DOM Elements
+        const categoryTitle = document.getElementById('category-title');
+        const imageCount = document.getElementById('image-count');
+        const categoryDescription = document.getElementById('category-description');
+        const categoryGalleryGrid = document.getElementById('category-gallery-grid');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalClose = document.getElementById('modal-close');
+        const modalImage = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const modalDate = document.getElementById('modal-date');
+        const modalCategory = document.getElementById('modal-category');
+        const bookSessionBtn = document.getElementById('book-session-btn');
+        const notFoundContainer = document.getElementById('not-found-container');
+
+        // Get category from URL parameter
+        function getCategoryFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('category');
+        }
+
+        // Initialize category gallery
+        function initCategoryGallery() {
+            const category = getCategoryFromURL();
+            
+            if (!category || !categoryData[category]) {
+                showNotFound();
+                return;
+            }
+            
+            const currentCategory = categoryData[category];
+            
+            // Update page title and header
+            document.title = `${currentCategory.title} - Emeka Studios`;
+            categoryTitle.textContent = currentCategory.title;
+            imageCount.textContent = `${currentCategory.images.length} Images`;
+            categoryDescription.textContent = currentCategory.description;
+            
+            // Render gallery items
+            renderGalleryItems(currentCategory.images, category);
+            
+            // Setup event listeners
+            setupEventListeners();
+        }
+
+        // Show not found message
+        function showNotFound() {
+            notFoundContainer.style.display = 'flex';
+            document.querySelector('.category-header').style.display = 'none';
+            document.querySelector('.category-description').style.display = 'none';
+            document.querySelector('.category-gallery-container').style.display = 'none';
+        }
+
+        // Render gallery items
+        function renderGalleryItems(images, category) {
+            categoryGalleryGrid.innerHTML = '';
+            
+            images.forEach(image => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'category-gallery-item';
+                
+                galleryItem.innerHTML = `
+                    <img src="${image.src}" alt="${image.title}">
+                    <div class="category-gallery-item-info">
+                        <h3 class="category-gallery-item-title">${image.title}</h3>
+                        <p class="category-gallery-item-date">${image.date}</p>
+                    </div>
+                `;
+                
+                galleryItem.addEventListener('click', () => openModal(image, category));
+                categoryGalleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        // Open modal with image details
+        function openModal(image, category) {
+            modalImage.src = image.src;
+            modalImage.alt = image.title;
+            modalTitle.textContent = image.title;
+            modalDescription.textContent = image.description;
+            modalDate.textContent = image.date;
+            modalCategory.textContent = category;
+            
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+
+        // Close modal
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Re-enable scrolling
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Modal close button
+            modalClose.addEventListener('click', closeModal);
+            
+            // Close modal when clicking outside
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+            
+            // Book session button
+            bookSessionBtn.addEventListener('click', () => {
+                window.open('https://webstore.ikhokha.com/emekastudios', '_blank');
+            });
+        }
+
+        // Initialize the category gallery when the page loads
+        document.addEventListener('DOMContentLoaded', initCategoryGallery);
+    </script>
+</body>
+</html>

@@ -10,8 +10,8 @@
         :root {
             --orange: #f97316;
             --orange-dark: #ea580c;
-            --dark-bg: #0a0a0a;
-            --darker-bg: #000000;
+            --dark-bg: black;
+            --darker-bg: black;
             --light-text: #f8fafc;
             --gray-text: #94a3b8;
             --gray-200: #e5e5e5;
@@ -19,6 +19,8 @@
             --gray-600: #4b5563;
             --gray-800: #1f2937;
             --gray-900: #111827;
+            --white-bg: #ffffff;
+            --dark-text: #1a1a1a;
         }
 
         * {
@@ -123,6 +125,7 @@
             margin: 0 auto;
             padding: 0 1rem;
             text-align: center;
+            color: white;
         }
 
         .category-description-text {
@@ -131,10 +134,12 @@
             line-height: 1.7;
         }
 
+        /* White background sections */
         .category-gallery-container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem 1rem;
+            background-color: var(--white-bg);
         }
 
         .category-gallery-grid {
@@ -151,11 +156,12 @@
             width: 300px;
             height: 200px;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .category-gallery-item:hover {
             transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .category-gallery-item img {
@@ -201,14 +207,14 @@
             color: var(--gray-200);
         }
 
-        /* Modal Styles */
+        /* Improved Modal Styles */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -224,44 +230,59 @@
         }
 
         .modal-content {
-            background-color: var(--darker-bg);
+            background-color: var(--white-bg);
             border-radius: 0.5rem;
-            max-width: 90vw;
-            max-height: 90vh;
+            max-width: 95vw;
+            max-height: 95vh;
             overflow: auto;
             display: flex;
             flex-direction: column;
             position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         @media (min-width: 768px) {
             .modal-content {
                 flex-direction: row;
-                max-width: 80vw;
+                max-width: 90vw;
+                max-height: 85vh;
+            }
+        }
+
+        .modal-image-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+
+        @media (min-width: 768px) {
+            .modal-image-container {
+                width: 60%;
             }
         }
 
         .modal-image {
             width: 100%;
-            max-height: 50vh;
+            max-height: 100%;
             object-fit: contain;
-        }
-
-        @media (min-width: 768px) {
-            .modal-image {
-                width: 50%;
-                max-height: 80vh;
-            }
+            transition: transform 0.3s;
         }
 
         .modal-info {
             padding: 1.5rem;
             width: 100%;
+            color: var(--dark-text);
+            overflow-y: auto;
         }
 
         @media (min-width: 768px) {
             .modal-info {
-                width: 50%;
+                width: 40%;
             }
         }
 
@@ -269,23 +290,35 @@
             position: absolute;
             top: 1rem;
             right: 1rem;
-            background: none;
+            background: rgba(0, 0, 0, 0.7);
             border: none;
-            color: var(--orange);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.5rem;
             cursor: pointer;
             z-index: 10;
+            transition: background-color 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.9);
         }
 
         .modal-title {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--light-text);
+            color: var(--dark-text);
         }
 
         .modal-description {
             margin-bottom: 1rem;
-            color: var(--gray-200);
+            color: var(--dark-text);
+            line-height: 1.6;
         }
 
         .modal-date {
@@ -313,12 +346,98 @@
             border: none;
             cursor: pointer;
             transition: background-color 0.3s;
+            width: 100%;
         }
 
         .book-session-btn:hover {
             background-color: var(--orange-dark);
         }
 
+        /* Navigation Controls */
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+
+        .modal-nav:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-nav.prev {
+            left: 1rem;
+        }
+
+        .modal-nav.next {
+            right: 1rem;
+        }
+
+        /* Image Counter */
+        .modal-counter {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+
+        /* Loading Spinner */
+        .modal-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--orange);
+            font-size: 2rem;
+        }
+
+        /* Zoom Controls */
+        .modal-zoom-controls {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        .modal-zoom-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .modal-zoom-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        /* Not Found Section */
         .not-found-container {
             min-height: 60vh;
             display: flex;
@@ -327,6 +446,8 @@
             justify-content: center;
             text-align: center;
             padding: 2rem;
+            background-color: var(--white-bg);
+            color: var(--dark-text);
         }
 
         .not-found-icon {
@@ -338,12 +459,34 @@
         .not-found-title {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--light-text);
+            color: var(--dark-text);
         }
 
         .not-found-text {
             margin-bottom: 2rem;
-            color: var(--gray-200);
+            color: var(--dark-text);
+        }
+
+        /* Loading Animation for Grid Images */
+        .image-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 0.5rem;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
         }
     </style>
 </head>
@@ -377,19 +520,48 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Improved Modal -->
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal-content">
             <button class="modal-close" id="modal-close">
                 <i class="bi bi-x-lg"></i>
             </button>
-            <img class="modal-image" id="modal-image" src="" alt="">
+            
+            <button class="modal-nav prev" id="modal-prev">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            
+            <button class="modal-nav next" id="modal-next">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+            
+            <div class="modal-image-container">
+                <div class="modal-loading" id="modal-loading">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </div>
+                <img class="modal-image" id="modal-image" src="" alt="">
+            </div>
+            
             <div class="modal-info">
                 <h2 class="modal-title" id="modal-title"></h2>
                 <p class="modal-description" id="modal-description"></p>
                 <p class="modal-date" id="modal-date"></p>
                 <span class="modal-category" id="modal-category"></span>
                 <button class="book-session-btn" id="book-session-btn">Book Similar Session</button>
+            </div>
+            
+            <div class="modal-counter" id="modal-counter"></div>
+            
+            <div class="modal-zoom-controls">
+                <button class="modal-zoom-btn" id="modal-zoom-in">
+                    <i class="bi bi-plus-lg"></i>
+                </button>
+                <button class="modal-zoom-btn" id="modal-zoom-out">
+                    <i class="bi bi-dash-lg"></i>
+                </button>
+                <button class="modal-zoom-btn" id="modal-zoom-reset">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -672,6 +844,19 @@
         const modalCategory = document.getElementById('modal-category');
         const bookSessionBtn = document.getElementById('book-session-btn');
         const notFoundContainer = document.getElementById('not-found-container');
+        const modalPrev = document.getElementById('modal-prev');
+        const modalNext = document.getElementById('modal-next');
+        const modalCounter = document.getElementById('modal-counter');
+        const modalLoading = document.getElementById('modal-loading');
+        const modalZoomIn = document.getElementById('modal-zoom-in');
+        const modalZoomOut = document.getElementById('modal-zoom-out');
+        const modalZoomReset = document.getElementById('modal-zoom-reset');
+
+        // Global variables for navigation and zoom
+        let currentCategory = null;
+        let currentIndex = 0;
+        let currentImages = [];
+        let zoomLevel = 1;
 
         // Get category from URL parameter
         function getCategoryFromURL() {
@@ -688,16 +873,20 @@
                 return;
             }
             
-            const currentCategory = categoryData[category];
+            currentCategory = category;
+            const currentCategoryData = categoryData[category];
             
             // Update page title and header
-            document.title = `${currentCategory.title} - Emeka Studios`;
-            categoryTitle.textContent = currentCategory.title;
-            imageCount.textContent = `${currentCategory.images.length} Images`;
-            categoryDescription.textContent = currentCategory.description;
+            document.title = `${currentCategoryData.title} - Emeka Studios`;
+            categoryTitle.textContent = currentCategoryData.title;
+            imageCount.textContent = `${currentCategoryData.images.length} Images`;
+            categoryDescription.textContent = currentCategoryData.description;
+            
+            // Store current images for navigation
+            currentImages = currentCategoryData.images;
             
             // Render gallery items
-            renderGalleryItems(currentCategory.images, category);
+            renderGalleryItems(currentCategoryData.images, category);
             
             // Setup event listeners
             setupEventListeners();
@@ -715,40 +904,108 @@
         function renderGalleryItems(images, category) {
             categoryGalleryGrid.innerHTML = '';
             
-            images.forEach(image => {
+            images.forEach((image, index) => {
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'category-gallery-item';
                 
                 galleryItem.innerHTML = `
-                    <img src="${image.src}" alt="${image.title}">
+                    <div class="image-loading"></div>
+                    <img src="${image.src}" alt="${image.title}" onload="this.previousElementSibling.style.display='none'">
                     <div class="category-gallery-item-info">
                         <h3 class="category-gallery-item-title">${image.title}</h3>
                         <p class="category-gallery-item-date">${image.date}</p>
                     </div>
                 `;
                 
-                galleryItem.addEventListener('click', () => openModal(image, category));
+                galleryItem.addEventListener('click', () => openModal(image, category, index));
                 categoryGalleryGrid.appendChild(galleryItem);
             });
         }
 
         // Open modal with image details
-        function openModal(image, category) {
+        function openModal(image, category, index) {
+            currentIndex = index;
+            zoomLevel = 1;
+            
+            // Show loading spinner
+            modalLoading.style.display = 'block';
+            modalImage.style.transform = 'scale(1)';
+            
+            // Load image
+            modalImage.onload = function() {
+                modalLoading.style.display = 'none';
+            };
             modalImage.src = image.src;
             modalImage.alt = image.title;
+            
+            // Update modal info
             modalTitle.textContent = image.title;
             modalDescription.textContent = image.description;
             modalDate.textContent = image.date;
             modalCategory.textContent = category;
             
+            // Update counter
+            updateCounter();
+            
             modalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Update navigation counter
+        function updateCounter() {
+            modalCounter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+        }
+
+        // Navigate to next image
+        function nextImage() {
+            if (currentIndex < currentImages.length - 1) {
+                currentIndex++;
+                openModal(currentImages[currentIndex], currentCategory, currentIndex);
+            } else {
+                // Loop back to first image
+                currentIndex = 0;
+                openModal(currentImages[currentIndex], currentCategory, currentIndex);
+            }
+        }
+
+        // Navigate to previous image
+        function prevImage() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                openModal(currentImages[currentIndex], currentCategory, currentIndex);
+            } else {
+                // Loop to last image
+                currentIndex = currentImages.length - 1;
+                openModal(currentImages[currentIndex], currentCategory, currentIndex);
+            }
         }
 
         // Close modal
         function closeModal() {
             modalOverlay.classList.remove('active');
             document.body.style.overflow = ''; // Re-enable scrolling
+        }
+
+        // Handle zoom in
+        function zoomIn() {
+            if (zoomLevel < 3) {
+                zoomLevel += 0.25;
+                modalImage.style.transform = `scale(${zoomLevel})`;
+            }
+        }
+
+        // Handle zoom out
+        function zoomOut() {
+            if (zoomLevel > 0.5) {
+                zoomLevel -= 0.25;
+                modalImage.style.transform = `scale(${zoomLevel})`;
+            }
+        }
+
+        // Reset zoom
+        function resetZoom() {
+            zoomLevel = 1;
+            modalImage.style.transform = 'scale(1)';
         }
 
         // Set up event listeners
@@ -768,12 +1025,52 @@
                 if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
                     closeModal();
                 }
+                
+                // Keyboard navigation
+                if (modalOverlay.classList.contains('active')) {
+                    if (e.key === 'ArrowRight') {
+                        nextImage();
+                    } else if (e.key === 'ArrowLeft') {
+                        prevImage();
+                    }
+                }
             });
+            
+            // Navigation buttons
+            modalNext.addEventListener('click', nextImage);
+            modalPrev.addEventListener('click', prevImage);
             
             // Book session button
             bookSessionBtn.addEventListener('click', () => {
                 window.open('https://webstore.ikhokha.com/emekastudios', '_blank');
             });
+            
+            // Zoom controls
+            modalZoomIn.addEventListener('click', zoomIn);
+            modalZoomOut.addEventListener('click', zoomOut);
+            modalZoomReset.addEventListener('click', resetZoom);
+            
+            // Swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            modalOverlay.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+            
+            modalOverlay.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    nextImage();
+                }
+                if (touchEndX > touchStartX + 50) {
+                    prevImage();
+                }
+            }
         }
 
         // Initialize the category gallery when the page loads

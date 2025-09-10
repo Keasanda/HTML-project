@@ -1679,3 +1679,83 @@ html, body {
     font-weight: bold ;
    
   }
+
+
+  /* Add these styles to your existing CSS */
+
+/* Center the portfolio header text */
+.portfolio-section .services-header {
+    text-align: center;
+}
+
+/* Center the category filters */
+.portfolio-section .category-filters {
+    justify-content: center;
+}
+
+/* Center text in portfolio items */
+.portfolio-overlay {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+/* Ensure text in overlay elements is centered */
+.portfolio-overlay h3,
+.portfolio-overlay p,
+.portfolio-overlay span {
+    text-align: center;
+    width: 100%;
+}
+
+.OG{
+    color: #f97316;
+}
+
+/* Center the portfolio section text */
+.portfolio-section .services-header {
+    text-align: center;
+}
+
+.portfolio-section .category-filters {
+    justify-content: center;
+}
+
+.portfolio-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+/* Style for the new gallery buttons */
+.OG {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.gallery-button {
+    background-color: var(--orange);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+    margin-top: 1rem;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.gallery-button:hover {
+    background-color: var(--orange-dark);
+    transform: scale(1.05);
+}

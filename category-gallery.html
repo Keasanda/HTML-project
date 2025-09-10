@@ -79,7 +79,7 @@
         }
 
         .category-header-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 1rem;
             display: flex;
@@ -102,7 +102,7 @@
         }
 
         .category-title {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 700;
             color: var(--gray-200);
             text-align: center;
@@ -121,7 +121,7 @@
         }
 
         .category-description-container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 1rem;
             text-align: center;
@@ -129,312 +129,220 @@
         }
 
         .category-description-text {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             color: var(--gray-200);
             line-height: 1.7;
         }
 
-        /* White background sections */
-        .category-gallery-container {
-            max-width: 1400px;
-            margin: 0 auto;
+        /* Gallery Grid - Updated to always show 3 columns */
+        .gallery {
             padding: 2rem 1rem;
             background-color: var(--white-bg);
         }
 
-        .category-gallery-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        .gallery-container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
         }
 
-        .category-gallery-item {
-            position: relative;
+        .gallery-tile {
             overflow: hidden;
-            border-radius: 0.5rem;
-            width: 300px;
-            height: 200px;
+            position: relative;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .category-gallery-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .category-gallery-item img {
+        .gallery-tile img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease-in-out;
         }
 
-        .category-gallery-item:hover img {
-            transform: scale(1.1);
-            filter: brightness(0.8);
+        .gallery-tile:hover img {
+            transform: scale(1.05);
+            filter: brightness(80%);
         }
 
-        .category-gallery-item-info {
+        .gallery-tile.scale img {
+            transform: scaleY(1.03);
+        }
+
+        .gallery-tile.scale:hover img {
+            transform: scaleY(1.03) scale(1.05);
+        }
+
+        .picture-info {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            inset: 0;
+            z-index: 10;
+            color: white;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            padding: 1rem;
+            justify-content: center;
+            align-items: flex-start;
             opacity: 0;
             transition: opacity 0.3s;
-            color: white;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
         }
 
-        .category-gallery-item:hover .category-gallery-item-info {
+        .gallery-tile:hover .picture-info {
             opacity: 1;
         }
 
-        .category-gallery-item-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
+        .picture-info h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0.5rem 0;
         }
 
-        .category-gallery-item-date {
-            font-size: 0.875rem;
-            color: var(--gray-200);
+        .picture-info p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
         }
 
-        /* Improved Modal Styles */
-        .modal-overlay {
+        /* Modal - Updated to match React component */
+        .imageview-wrapper {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
             background-color: rgba(0, 0, 0, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
+            animation: fadeIn 0.3s ease-in-out forwards;
         }
 
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background-color: var(--white-bg);
-            border-radius: 0.5rem;
-            max-width: 95vw;
-            max-height: 95vh;
-            overflow: auto;
+        .imageview {
             display: flex;
             flex-direction: column;
-            position: relative;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        @media (min-width: 768px) {
-            .modal-content {
-                flex-direction: row;
-                max-width: 90vw;
-                max-height: 85vh;
-            }
-        }
-
-        .modal-image-container {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            background-color: #f5f5f5;
-            display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 300px;
+            padding: 1rem;
+            max-width: 95vw;
+            max-height: 95vh;
         }
 
-        @media (min-width: 768px) {
-            .modal-image-container {
+        @media (min-width: 992px) {
+            .imageview {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .imageview-image {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 992px) {
+            .imageview-image {
                 width: 60%;
+                max-height: 80vh;
+                margin-bottom: 0;
+                margin-right: 2rem;
             }
         }
 
-        .modal-image {
+        .imageview-image img {
             width: 100%;
-            max-height: 100%;
+            height: 100%;
             object-fit: contain;
-            transition: transform 0.3s;
+            border-radius: 0.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
         }
 
-        .modal-info {
-            padding: 1.5rem;
-            width: 100%;
-            color: var(--dark-text);
-            overflow-y: auto;
+        .imageview-info {
+            color: white;
+            text-align: right;
+            max-width: 500px;
+            position: relative;
         }
 
-        @media (min-width: 768px) {
-            .modal-info {
-                width: 40%;
-            }
+        .imageview-info h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .imageview-info p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .imageview-info .date {
+            color: var(--orange);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .imageview-info .category-badge {
+            display: inline-block;
+            background-color: var(--orange);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            text-transform: capitalize;
         }
 
         .modal-close {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(0, 0, 0, 0.7);
+            top: -3rem;
+            right: 0;
+            color: var(--orange);
+            font-size: 2.5rem;
+            background: none;
             border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
             cursor: pointer;
-            z-index: 10;
-            transition: background-color 0.3s;
+            transition: transform 0.3s;
         }
 
         .modal-close:hover {
-            background: rgba(0, 0, 0, 0.9);
-        }
-
-        .modal-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark-text);
-        }
-
-        .modal-description {
-            margin-bottom: 1rem;
-            color: var(--dark-text);
-            line-height: 1.6;
-        }
-
-        .modal-date {
-            color: var(--orange);
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-category {
-            display: inline-block;
-            background-color: var(--orange);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            margin-bottom: 1.5rem;
+            transform: scale(1.25);
         }
 
         .book-session-btn {
             background-color: var(--orange);
             color: white;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem;
             border-radius: 0.5rem;
             font-weight: 600;
             border: none;
             cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
+            transition: all 0.3s;
+            font-size: 1.1rem;
         }
 
         .book-session-btn:hover {
             background-color: var(--orange-dark);
+            transform: translateY(-2px);
         }
 
-        /* Navigation Controls */
-        .modal-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            border: none;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 10;
-            transition: background-color 0.3s;
-        }
-
-        .modal-nav:hover {
-            background: rgba(0, 0, 0, 0.9);
-        }
-
-        .modal-nav.prev {
-            left: 1rem;
-        }
-
-        .modal-nav.next {
-            right: 1rem;
-        }
-
-        /* Image Counter */
-        .modal-counter {
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-        }
-
-        /* Loading Spinner */
-        .modal-loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--orange);
-            font-size: 2rem;
-        }
-
-        /* Zoom Controls */
-        .modal-zoom-controls {
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 0.5rem;
-            z-index: 10;
-        }
-
-        .modal-zoom-btn {
-            background: rgba(0, 0, 0, 0.7);
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .modal-zoom-btn:hover {
-            background: rgba(0, 0, 0, 0.9);
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         /* Not Found Section */
@@ -457,7 +365,7 @@
         }
 
         .not-found-title {
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
             color: var(--dark-text);
         }
@@ -465,27 +373,40 @@
         .not-found-text {
             margin-bottom: 2rem;
             color: var(--dark-text);
+            font-size: 1.2rem;
+            max-width: 600px;
         }
 
-        /* Loading Animation for Grid Images */
-        .image-loading {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-            border-radius: 0.5rem;
-        }
-
-        @keyframes loading {
-            0% {
-                background-position: 200% 0;
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
-            100% {
-                background-position: -200% 0;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery {
+                padding: 1rem;
+            }
+            
+            .category-title {
+                font-size: 1.5rem;
+            }
+            
+            .category-description-text {
+                font-size: 1.1rem;
+            }
+            
+            .picture-info h2 {
+                font-size: 1.25rem;
+            }
+            
+            .imageview-info h2 {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -513,55 +434,33 @@
         </div>
     </div>
 
-    <!-- Category Gallery Grid -->
-    <div class="category-gallery-container">
-        <div class="category-gallery-grid" id="category-gallery-grid">
-            <!-- Images will be dynamically inserted here -->
+    <!-- Category Gallery Grid - Updated to grid layout with 3 columns -->
+    <div class="gallery" id="gallery">
+        <div class="gallery-container">
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Images will be dynamically inserted here -->
+            </div>
         </div>
     </div>
 
-    <!-- Improved Modal -->
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close" id="modal-close">
-                <i class="bi bi-x-lg"></i>
-            </button>
-            
-            <button class="modal-nav prev" id="modal-prev">
-                <i class="bi bi-chevron-left"></i>
-            </button>
-            
-            <button class="modal-nav next" id="modal-next">
-                <i class="bi bi-chevron-right"></i>
-            </button>
-            
-            <div class="modal-image-container">
-                <div class="modal-loading" id="modal-loading">
-                    <i class="bi bi-arrow-clockwise"></i>
-                </div>
-                <img class="modal-image" id="modal-image" src="" alt="">
+    <!-- Modal - Updated to match React component -->
+    <div class="imageview-wrapper" id="modal-overlay" style="display: none;">
+        <div class="imageview">
+            <div class="imageview-image">
+                <img id="modal-image" src="" alt="">
             </div>
-            
-            <div class="modal-info">
-                <h2 class="modal-title" id="modal-title"></h2>
-                <p class="modal-description" id="modal-description"></p>
-                <p class="modal-date" id="modal-date"></p>
-                <span class="modal-category" id="modal-category"></span>
+            <div class="imageview-info">
+                <button class="modal-close" id="modal-close">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+                <p class="date" id="modal-date"></p>
+                <h3>Category</h3>
+                <ul>
+                    <li class="category-badge" id="modal-category"></li>
+                </ul>
                 <button class="book-session-btn" id="book-session-btn">Book Similar Session</button>
-            </div>
-            
-            <div class="modal-counter" id="modal-counter"></div>
-            
-            <div class="modal-zoom-controls">
-                <button class="modal-zoom-btn" id="modal-zoom-in">
-                    <i class="bi bi-plus-lg"></i>
-                </button>
-                <button class="modal-zoom-btn" id="modal-zoom-out">
-                    <i class="bi bi-dash-lg"></i>
-                </button>
-                <button class="modal-zoom-btn" id="modal-zoom-reset">
-                    <i class="bi bi-arrow-clockwise"></i>
-                </button>
             </div>
         </div>
     </div>
@@ -602,20 +501,27 @@
                     },
                     {
                         id: 3,
-                        src: 'https://i.postimg.cc/mDs0Ygwb/Screenshot-2025-09-04-162910.png',
+                        src: 'https://i.postimg.cc/nrHfJhjd/Screenshot-2025-09-04-162807.png',
                         title: 'Wedding Ceremony',
                         description: 'Sacred moments of love and commitment in a beautiful church setting',
                         date: 'April 2024'
                     },
                     {
                         id: 4,
-                        src: 'https://i.postimg.cc/gkZHWHpT/Screenshot-2025-09-04-162725.png',
+                        src: 'https://i.postimg.cc/mDs0Ygwb/Screenshot-2025-09-04-162910.png',
                         title: 'Bridal Portrait',
                         description: 'Stunning bridal photography with natural lighting and elegant composition',
                         date: 'March 2024'
                     },
                     {
                         id: 5,
+                        src: 'https://i.postimg.cc/gkZHWHpT/Screenshot-2025-09-04-162725.png',
+                        title: 'Wedding Details',
+                        description: 'Beautiful detail shots of rings, flowers, and wedding decorations',
+                        date: 'February 2024'
+                    },
+                    {
+                        id: 6,
                         src: 'https://i.postimg.cc/fyZSQmf6/Screenshot-2025-09-04-163837.png',
                         title: 'First Dance',
                         description: 'Intimate moments of the couple\'s first dance as newlyweds',
@@ -628,35 +534,42 @@
                 description: 'Professional portraits that capture personality, emotion, and authentic moments',
                 images: [
                     {
-                        id: 6,
+                        id: 7,
                         src: 'https://i.postimg.cc/9MjPVvFL/Alvada-4.jpg',
                         title: 'Family Portrait Session',
                         description: 'Capturing family bonds and connections in a natural outdoor setting',
                         date: 'June 2024'
                     },
                     {
-                        id: 7,
+                        id: 8,
                         src: 'https://i.postimg.cc/mgq0Xwb2/Screenshot-2025-09-04-164935.png',
                         title: 'Senior Portraits',
                         description: 'Graduation memories that last a lifetime with professional styling',
                         date: 'May 2024'
                     },
                     {
-                        id: 8,
+                        id: 9,
                         src: 'https://i.postimg.cc/Y9spQwG3/48-Diana-Tsutsa.jpg',
                         title: 'Professional Headshots',
                         description: 'Corporate headshots with personality and professional appeal',
                         date: 'April 2024'
                     },
                     {
-                        id: 9,
+                        id: 10,
                         src: 'https://i.postimg.cc/wjtrmmhK/Screenshot-2025-09-04-163218.png',
                         title: 'Maternity Session',
                         description: 'Beautiful expecting mother portraits celebrating new life',
                         date: 'March 2024'
                     },
                     {
-                        id: 10,
+                        id: 11,
+                        src: 'https://i.postimg.cc/L6bn4c99/20240524102555-IMG-0757.jpg',
+                        title: 'Children Portraits',
+                        description: 'Playful and natural children photography sessions',
+                        date: 'February 2024'
+                    },
+                    {
+                        id: 12,
                         src: 'https://i.postimg.cc/DwbCZKTn/Screenshot-2025-09-04-165630.png',
                         title: 'Couple Session',
                         description: 'Romantic couple photography in beautiful natural settings',
@@ -669,35 +582,42 @@
                 description: 'Professional event coverage that captures every important moment and emotion',
                 images: [
                     {
-                        id: 11,
+                        id: 13,
                         src: 'https://i.postimg.cc/pVzTzwTW/EME8228-2.jpg',
                         title: 'Corporate Event',
                         description: 'Professional business gathering documentation with attention to detail',
                         date: 'June 2024'
                     },
                     {
-                        id: 12,
+                        id: 14,
                         src: 'https://i.postimg.cc/yYn7TszH/EME8142-1.jpg',
                         title: 'Birthday Celebration',
                         description: 'Joyful birthday party moments with family and friends',
                         date: 'May 2024'
                     },
                     {
-                        id: 13,
-                        src: 'https://i.postimg.cc/1tNR7Xxb/Screenshot-2025-09-04-163020.png',
+                        id: 15,
+                        src: 'https://i.postimg.cc/8PkSc9fn/EME8274.jpg',
                         title: 'Conference Coverage',
                         description: 'Professional conference and networking event documentation',
                         date: 'April 2024'
                     },
                     {
-                        id: 14,
+                        id: 16,
+                        src: 'https://i.postimg.cc/1tNR7Xxb/Screenshot-2025-09-04-163020.png',
+                        title: 'Product Launch',
+                        description: 'Corporate product launch event with media coverage',
+                        date: 'March 2024'
+                    },
+                    {
+                        id: 17,
                         src: 'https://i.postimg.cc/9Fkn2nd9/Screenshot-2025-09-04-220722.png',
                         title: 'Charity Gala',
                         description: 'Elegant charity fundraising event with VIP guests',
                         date: 'February 2024'
                     },
                     {
-                        id: 15,
+                        id: 18,
                         src: 'https://i.postimg.cc/R0YVTfYc/Screenshot-2025-09-04-163005.png',
                         title: 'Awards Ceremony',
                         description: 'Prestigious awards ceremony with professional coverage',
@@ -710,35 +630,42 @@
                 description: 'Authentic lifestyle photography that captures real moments and genuine emotions',
                 images: [
                     {
-                        id: 16,
+                        id: 19,
                         src: 'https://i.postimg.cc/3xTPPZVK/2025-06-06-Sere-Mhati-03.jpg',
                         title: 'Urban Lifestyle',
                         description: 'City life and urban exploration with modern aesthetics',
                         date: 'June 2024'
                     },
                     {
-                        id: 17,
+                        id: 20,
                         src: 'https://i.postimg.cc/W3hKMYF7/2025-06-06-Sere-Mhati-02.jpg',
                         title: 'Fashion Lifestyle',
                         description: 'Contemporary fashion and style photography with artistic flair',
                         date: 'May 2024'
                     },
                     {
-                        id: 18,
+                        id: 21,
                         src: 'https://i.postimg.cc/Y9Y4qqDY/26.png',
                         title: 'Outdoor Adventure',
                         description: 'Adventure and outdoor lifestyle captures in natural settings',
                         date: 'April 2024'
                     },
                     {
-                        id: 19,
+                        id: 22,
                         src: 'https://i.postimg.cc/NjRQXFq0/2025-06-06-Design-26-Foundation-007.jpg',
                         title: 'Beach Lifestyle',
                         description: 'Relaxed beach lifestyle photography with natural lighting',
                         date: 'March 2024'
                     },
                     {
-                        id: 20,
+                        id: 23,
+                        src: 'https://i.postimg.cc/6TsD6VQf/2025-06-05-Clareb-accessories-051.jpg',
+                        title: 'Home Lifestyle',
+                        description: 'Cozy home lifestyle sessions capturing everyday moments',
+                        date: 'February 2024'
+                    },
+                    {
+                        id: 24,
                         src: 'https://i.postimg.cc/HsXLwBbH/2025-06-05-Clareb-accessories-160.jpg',
                         title: 'Travel Lifestyle',
                         description: 'Travel and adventure lifestyle photography around the world',
@@ -751,35 +678,42 @@
                 description: 'Professional corporate photography for businesses, teams, and executive portraits',
                 images: [
                     {
-                        id: 21,
+                        id: 25,
                         src: 'https://i.postimg.cc/y6T1xwPq/KYIB-26.jpg',
                         title: 'Corporate Team',
                         description: 'Professional team photography for businesses and organizations',
                         date: 'June 2024'
                     },
                     {
-                        id: 22,
+                        id: 26,
                         src: 'https://i.postimg.cc/6Qzcy6y2/2025-06-06-Rich-Aunties-77.jpg',
                         title: 'Executive Portraits',
                         description: 'High-end executive and leadership portraits for corporate use',
                         date: 'May 2024'
                     },
                     {
-                        id: 23,
+                        id: 27,
                         src: 'https://i.postimg.cc/ZR5SdqH1/Shared-from-Lightroom-mobile.jpg',
                         title: 'Office Environment',
                         description: 'Professional workplace photography showcasing company culture',
                         date: 'April 2024'
                     },
                     {
-                        id: 24,
+                        id: 28,
                         src: 'https://i.postimg.cc/dDMmzLSX/2025-03-18-TB-PROOF-SYMPOSIUM-027.jpg',
                         title: 'Business Conference',
                         description: 'Corporate conference and meeting photography',
                         date: 'March 2024'
                     },
                     {
-                        id: 25,
+                        id: 29,
+                        src: 'https://i.postimg.cc/L6bn4c99/20240524102555-IMG-0757.jpg',
+                        title: 'Professional Headshots',
+                        description: 'Corporate headshots for LinkedIn and company profiles',
+                        date: 'February 2024'
+                    },
+                    {
+                        id: 30,
                         src: 'https://i.postimg.cc/PxSd3DNX/2025-03-18-TB-PROOF-SYMPOSIUM-026.jpg',
                         title: 'Company Culture',
                         description: 'Authentic workplace moments showcasing team collaboration',
@@ -792,35 +726,42 @@
                 description: 'Professional product photography that showcases your products in the best light',
                 images: [
                     {
-                        id: 26,
+                        id: 31,
                         src: 'https://i.postimg.cc/ncmvsS8B/2025-06-06-Rich-Aunties-01.jpg',
                         title: 'E-commerce Product Shot',
                         description: 'Clean product photography for online stores and catalogs',
                         date: 'June 2024'
                     },
                     {
-                        id: 27,
+                        id: 32,
                         src: 'https://i.postimg.cc/FFycbWs4/2025-06-06-Sere-Mhati-19.jpg',
                         title: 'Lifestyle Product Photography',
                         description: 'Products shown in natural use contexts and environments',
                         date: 'May 2024'
                     },
                     {
-                        id: 28,
+                        id: 33,
                         src: 'https://i.postimg.cc/fbzgZt23/2025-06-06-Rich-Aunties-03.jpg',
                         title: 'Food Photography',
                         description: 'Appetizing food and beverage photography for menus and marketing',
                         date: 'April 2024'
                     },
                     {
-                        id: 29,
+                        id: 34,
                         src: 'https://i.postimg.cc/XqsYHyzw/2025-06-03-Nakai-Beauty-Products-40.jpg',
                         title: 'Tech Product Showcase',
                         description: 'Professional technology product photography with clean backgrounds',
                         date: 'March 2024'
                     },
                     {
-                        id: 30,
+                        id: 35,
+                        src: 'https://i.postimg.cc/kGB0C65N/Basetsana-Ntamu-6.jpg',
+                        title: 'Fashion Product Photography',
+                        description: 'Clothing and accessories showcased on models and mannequins',
+                        date: 'February 2024'
+                    },
+                    {
+                        id: 36,
                         src: 'https://i.postimg.cc/HkdCcLvm/Akido-Malabela-5.jpg',
                         title: 'Beauty Product Photography',
                         description: 'Cosmetics and beauty products with professional lighting',
@@ -834,7 +775,7 @@
         const categoryTitle = document.getElementById('category-title');
         const imageCount = document.getElementById('image-count');
         const categoryDescription = document.getElementById('category-description');
-        const categoryGalleryGrid = document.getElementById('category-gallery-grid');
+        const galleryGrid = document.getElementById('gallery-grid');
         const modalOverlay = document.getElementById('modal-overlay');
         const modalClose = document.getElementById('modal-close');
         const modalImage = document.getElementById('modal-image');
@@ -844,19 +785,6 @@
         const modalCategory = document.getElementById('modal-category');
         const bookSessionBtn = document.getElementById('book-session-btn');
         const notFoundContainer = document.getElementById('not-found-container');
-        const modalPrev = document.getElementById('modal-prev');
-        const modalNext = document.getElementById('modal-next');
-        const modalCounter = document.getElementById('modal-counter');
-        const modalLoading = document.getElementById('modal-loading');
-        const modalZoomIn = document.getElementById('modal-zoom-in');
-        const modalZoomOut = document.getElementById('modal-zoom-out');
-        const modalZoomReset = document.getElementById('modal-zoom-reset');
-
-        // Global variables for navigation and zoom
-        let currentCategory = null;
-        let currentIndex = 0;
-        let currentImages = [];
-        let zoomLevel = 1;
 
         // Get category from URL parameter
         function getCategoryFromURL() {
@@ -873,7 +801,6 @@
                 return;
             }
             
-            currentCategory = category;
             const currentCategoryData = categoryData[category];
             
             // Update page title and header
@@ -881,9 +808,6 @@
             categoryTitle.textContent = currentCategoryData.title;
             imageCount.textContent = `${currentCategoryData.images.length} Images`;
             categoryDescription.textContent = currentCategoryData.description;
-            
-            // Store current images for navigation
-            currentImages = currentCategoryData.images;
             
             // Render gallery items
             renderGalleryItems(currentCategoryData.images, category);
@@ -897,115 +821,52 @@
             notFoundContainer.style.display = 'flex';
             document.querySelector('.category-header').style.display = 'none';
             document.querySelector('.category-description').style.display = 'none';
-            document.querySelector('.category-gallery-container').style.display = 'none';
+            document.querySelector('.gallery').style.display = 'none';
         }
 
-        // Render gallery items
+        // Render gallery items in grid
         function renderGalleryItems(images, category) {
-            categoryGalleryGrid.innerHTML = '';
+            galleryGrid.innerHTML = '';
             
             images.forEach((image, index) => {
                 const galleryItem = document.createElement('div');
-                galleryItem.className = 'category-gallery-item';
+                galleryItem.className = 'gallery-tile';
+                
+                // Add scale class to some images for visual variety
+                if (index % 3 === 0) {
+                    galleryItem.classList.add('scale');
+                }
                 
                 galleryItem.innerHTML = `
-                    <div class="image-loading"></div>
-                    <img src="${image.src}" alt="${image.title}" onload="this.previousElementSibling.style.display='none'">
-                    <div class="category-gallery-item-info">
-                        <h3 class="category-gallery-item-title">${image.title}</h3>
-                        <p class="category-gallery-item-date">${image.date}</p>
+                    <div class="picture-info">
+                        <h2>${image.title}</h2>
+                        <p>${image.date}</p>
                     </div>
+                    <img src="${image.src}" alt="${image.title}" loading="lazy">
                 `;
                 
-                galleryItem.addEventListener('click', () => openModal(image, category, index));
-                categoryGalleryGrid.appendChild(galleryItem);
+                galleryItem.addEventListener('click', () => openModal(image, category));
+                galleryGrid.appendChild(galleryItem);
             });
         }
 
         // Open modal with image details
-        function openModal(image, category, index) {
-            currentIndex = index;
-            zoomLevel = 1;
-            
-            // Show loading spinner
-            modalLoading.style.display = 'block';
-            modalImage.style.transform = 'scale(1)';
-            
-            // Load image
-            modalImage.onload = function() {
-                modalLoading.style.display = 'none';
-            };
+        function openModal(image, category) {
             modalImage.src = image.src;
             modalImage.alt = image.title;
-            
-            // Update modal info
             modalTitle.textContent = image.title;
             modalDescription.textContent = image.description;
             modalDate.textContent = image.date;
             modalCategory.textContent = category;
             
-            // Update counter
-            updateCounter();
-            
-            modalOverlay.classList.add('active');
+            modalOverlay.style.display = 'flex';
             document.body.style.overflow = 'hidden';
-        }
-
-        // Update navigation counter
-        function updateCounter() {
-            modalCounter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
-        }
-
-        // Navigate to next image
-        function nextImage() {
-            if (currentIndex < currentImages.length - 1) {
-                currentIndex++;
-                openModal(currentImages[currentIndex], currentCategory, currentIndex);
-            } else {
-                // Loop back to first image
-                currentIndex = 0;
-                openModal(currentImages[currentIndex], currentCategory, currentIndex);
-            }
-        }
-
-        // Navigate to previous image
-        function prevImage() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                openModal(currentImages[currentIndex], currentCategory, currentIndex);
-            } else {
-                // Loop to last image
-                currentIndex = currentImages.length - 1;
-                openModal(currentImages[currentIndex], currentCategory, currentIndex);
-            }
         }
 
         // Close modal
         function closeModal() {
-            modalOverlay.classList.remove('active');
+            modalOverlay.style.display = 'none';
             document.body.style.overflow = ''; // Re-enable scrolling
-        }
-
-        // Handle zoom in
-        function zoomIn() {
-            if (zoomLevel < 3) {
-                zoomLevel += 0.25;
-                modalImage.style.transform = `scale(${zoomLevel})`;
-            }
-        }
-
-        // Handle zoom out
-        function zoomOut() {
-            if (zoomLevel > 0.5) {
-                zoomLevel -= 0.25;
-                modalImage.style.transform = `scale(${zoomLevel})`;
-            }
-        }
-
-        // Reset zoom
-        function resetZoom() {
-            zoomLevel = 1;
-            modalImage.style.transform = 'scale(1)';
         }
 
         // Set up event listeners
@@ -1022,55 +883,15 @@
             
             // Close modal with Escape key
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                if (e.key === 'Escape' && modalOverlay.style.display === 'flex') {
                     closeModal();
                 }
-                
-                // Keyboard navigation
-                if (modalOverlay.classList.contains('active')) {
-                    if (e.key === 'ArrowRight') {
-                        nextImage();
-                    } else if (e.key === 'ArrowLeft') {
-                        prevImage();
-                    }
-                }
             });
-            
-            // Navigation buttons
-            modalNext.addEventListener('click', nextImage);
-            modalPrev.addEventListener('click', prevImage);
             
             // Book session button
             bookSessionBtn.addEventListener('click', () => {
                 window.open('https://webstore.ikhokha.com/emekastudios', '_blank');
             });
-            
-            // Zoom controls
-            modalZoomIn.addEventListener('click', zoomIn);
-            modalZoomOut.addEventListener('click', zoomOut);
-            modalZoomReset.addEventListener('click', resetZoom);
-            
-            // Swipe support for mobile
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            modalOverlay.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, false);
-            
-            modalOverlay.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, false);
-            
-            function handleSwipe() {
-                if (touchEndX < touchStartX - 50) {
-                    nextImage();
-                }
-                if (touchEndX > touchStartX + 50) {
-                    prevImage();
-                }
-            }
         }
 
         // Initialize the category gallery when the page loads

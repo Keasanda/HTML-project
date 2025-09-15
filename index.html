@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+     <!-- Force HTTPS connections -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 </head>
 <body>
     <!-- Header Section -->
@@ -67,10 +69,10 @@
         <div class="hero-slide" style="background-image: url('https://i.postimg.cc/BbkmXVHv/2025-06-06-Design-26-Foundation-007.jpg')">
             <div class="hero-overlay"></div>
         </div>
-        <div class="hero-slide" style="background-image: url('https://i.postimg.cc/D0XMdh2G/Makama-Kekana-3.jpg')">
+        <div class="hero-slide" style="background-image: url('https://i.postimg.cc/R0YVTfYc/Screenshot-2025-09-04-163005.png')">
             <div class="hero-overlay"></div>
         </div>
-        <div class="hero-slide" style="background-image: url('https://i.postimg.cc/Hkp6jX7X/EME2942.jpg')">
+        <div class="hero-slide" style="background-image: url('https://i.postimg.cc/Y9Y4qqDY/26.png')">
             <div class="hero-overlay"></div>
         </div>
         
@@ -169,7 +171,7 @@
                 <!-- Photography Service -->
                 <div class="service-card">
                     <div class="service-bg">
-                        <img src="https://i.postimg.cc/gjMXZ6YL/96-A887-A9-2-C31-4-AB0-81-D6-CA189-B08-B432.jpg" alt="Photography">
+                        <img src="https://i.postimg.cc/6Qzcy6y2/2025-06-06-Rich-Aunties-77.jpg" alt="Photography">
                         <div class="service-bg-overlay"></div>
                     </div>
                     <div class="service-content">
@@ -201,7 +203,7 @@
                 <!-- Videography Service -->
                 <div class="service-card">
                     <div class="service-bg">
-                        <img src="https://i.postimg.cc/QdK9FtvV/2025-04-17-Sanlam-Financial-Planning-017.jpg" alt="Videography">
+                        <img src="https://i.postimg.cc/CLH7X7d8/KYIB-66.jpg" alt="Videography">
                         <div class="service-bg-overlay"></div>
                     </div>
                     <div class="service-content">
@@ -440,31 +442,27 @@
     </div>
 </section>
 
-
- 
-  <!-- Video Showcase Section -->
-    <section id="video-showcase" class="video-showcase">
-        <div class="video-showcase-container">
-            <div class="video-showcase-header">
-                <h2 class="video-showcase-title">Videography Showcase</h2>
-                <p class="video-showcase-subtitle">See our work in motion</p>
-            </div>
-            
-            <div class="video-container">
-                <div class="video-placeholder" id="video-placeholder">
-                    <div class="video-placeholder-content">
-                        <div class="video-placeholder-icon">
-                            <i class="bi bi-play-circle"></i>
-                        </div>
-                        <p>Click to play video</p>
-                    </div>
-                </div>
-                <div id="player"></div>
-                <div class="video-badge">Videography</div>
-            </div>
+<!-- Updated Video Showcase Section -->
+<section id="video-showcase" class="video-showcase">
+    <div class="video-showcase-container">
+        <div class="video-showcase-header">
+            <h2 class="video-showcase-title">Videography Showcase</h2>
+            <p class="video-showcase-subtitle">See our work in motion</p>
         </div>
-    </section>
 
+        <div class="video-container">
+            <!-- YouTube iframe with autoplay parameters -->
+            <iframe 
+                id="player" 
+                src="https://www.youtube.com/embed/Ellbj3kieqs?autoplay=1&mute=1&enablejsapi=1&playsinline=1&rel=0&modestbranding=1&controls=1" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+            <div class="video-badge">Videography</div>
+        </div>
+    </div>
+</section>
 
 
    <!-- Impact Section -->
@@ -531,7 +529,7 @@
                 <div class="impact-card">
                     <div class="partner-logo">
                         <img
-                            src="https://images.pexels.com/photos/3184293/pexels-photo-3184293.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop"
+                            src="https://i.postimg.cc/DwcX7YKr/KYIB-26.jpg"
                             alt="RLabs logo"
                         >
                     </div>
@@ -586,168 +584,168 @@
 
 
 <!-- Contact Section -->
-<section id="contact" class="contact-section">
-    <div class="container">
-        <div class="text-center mb-16">
-            <h2 class="services-title">
-                Get In <span class="text-orange">Touch</span>
-            </h2>
-            <p class="services-subtitle">
-                Ready to capture your special moments? Let's discuss your photography needs and create something beautiful together.
-            </p>
-        </div>
-
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h3 class="contact-subtitle">Let's Start a Conversation</h3>
-                
-                <div class="contact-details">
-                    <div class="contact-detail">
-                        <div class="contact-icon">
-                            <i class="bi bi-envelope"></i>
-                        </div>
-                        <div>
-                            <div class="contact-label">Email</div>
-                            <a href="mailto:info@emekastudios.co.za" class="contact-link">info@emekastudios.co.za</a>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-icon">
-                            <i class="bi bi-telephone"></i>
-                        </div>
-                        <div>
-                            <div class="contact-label">Phone</div>
-                            <a href="tel:+27832580696" class="contact-link">+27 83 258 0696</a>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-icon">
-                            <i class="bi bi-geo-alt"></i>
-                        </div>
-                        <div>
-                            <div class="contact-label">Location</div>
-                            <span class="contact-text">7823 Xorile Street</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="social-section">
-                    <h4 class="social-title">Follow My Work</h4>
-                    <div class="social-links">
-                        <a href="#" class="social-link" title="Instagram">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link" title="Facebook">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                        <a href="#" class="social-link" title="Twitter">
-                            <i class="bi bi-twitter"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="response-promise">
-                    <h4 class="promise-title">Quick Response Promise</h4>
-                    <p class="promise-text">
-                        I typically respond to all inquiries within 24 hours. For urgent bookings, please call directly.
-                    </p>
-                </div>
+   <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="text-center mb-16">
+                <h2 class="services-title">
+                    Get In <span class="text-orange">Touch</span>
+                </h2>
+                <p class="services-subtitle">
+                    Ready to capture your special moments? Let's discuss your photography needs and create something beautiful together.
+                </p>
             </div>
 
-            <div class="contact-form-container">
-                <form class="contact-form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                    <div class="form-status" id="form-status"></div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3 class="contact-subtitle">Let's Start a Conversation</h3>
                     
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name" class="form-label">
-                                Your Name *
-                            </label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                required
-                                class="form-input"
-                                minlength="2"
-                                pattern="[A-Za-z ]+"
-                                title="Please enter a valid name (letters and spaces only)"
-                            />
-                            <span class="form-error" id="name-error"></span>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="contact-label">Email</div>
+                                <a href="mailto:info@emekastudios.co.za" class="contact-link">info@emekastudios.co.za</a>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">
-                                Email Address *
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                required
-                                class="form-input"
-                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                title="Please enter a valid email address"
-                            />
-                            <span class="form-error" id="email-error"></span>
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="bi bi-telephone"></i>
+                            </div>
+                            <div>
+                                <div class="contact-label">Phone</div>
+                                <a href="tel:+27832580696" class="contact-link">+27 83 258 0696</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <div>
+                                <div class="contact-label">Location</div>
+                                <span class="contact-text">7823 Xorile Street</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="service" class="form-label">
-                            Service Interested In *
-                        </label>
-                        <select
-                            id="service"
-                            name="service"
-                            required
-                            class="form-select"
-                        >
-                            <option value="">Select a service</option>
-                            <option value="photography">Photography</option>
-                            <option value="videography">Videography</option>
-                            <option value="content-creation">Content Creation</option>
-                            <option value="workshops">Workshops & Masterclasses</option>
-                            <option value="brand-strategy">Brand Strategy</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <span class="form-error" id="service-error"></span>
+                    <div class="social-section">
+                        <h4 class="social-title">Follow My Work</h4>
+                        <div class="social-links">
+                            <a href="#" class="social-link" title="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" title="Facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link" title="Twitter">
+                                <i class="bi bi-twitter"></i>
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="message" class="form-label">
-                            Tell me about your vision *
-                        </label>
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="5"
-                            required
-                            placeholder="Share details about your event, preferred style, timeline, and any special requests..."
-                            class="form-textarea"
-                            minlength="10"
-                        ></textarea>
-                        <span class="form-error" id="message-error"></span>
+                    <div class="response-promise">
+                        <h4 class="promise-title">Quick Response Promise</h4>
+                        <p class="promise-text">
+                            I typically respond to all inquiries within 24 hours. For urgent bookings, please call directly.
+                        </p>
                     </div>
+                </div>
 
-                    <!-- Honeypot field for spam prevention -->
-                    <div class="hp-field" style="opacity: 0; position: absolute; left: -5000px;">
-                        <label for="hpname">Do not fill this out</label>
-                        <input type="text" id="hpname" name="hpname" tabindex="-1">
-                    </div>
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="4bdff696-ae07-4f62-9f08-b57c2d982fb7">
+                        <input type="hidden" name="subject" value="New Contact Form Submission from Emeka Studios Website">
+                        <input type="hidden" name="from_name" value="Emeka Studios Website">
+                        <input type="checkbox" name="botcheck" id="" style="display: none;">
+                        
+                        <div class="form-status" id="form-status"></div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" class="form-label">
+                                    Your Name *
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    required
+                                    class="form-input"
+                                    minlength="2"
+                                    pattern="[A-Za-z ]+"
+                                    title="Please enter a valid name (letters and spaces only)"
+                                />
+                                <span class="form-error" id="name-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">
+                                    Email Address *
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    required
+                                    class="form-input"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                    title="Please enter a valid email address"
+                                />
+                                <span class="form-error" id="email-error"></span>
+                            </div>
+                        </div>
 
-                    <button type="submit" class="form-submit-btn" id="submit-btn">
-                        <i class="bi bi-send"></i>
-                        <span>Send Message</span>
-                    </button>
-                    
-                    <p class="form-security-note">
-                        <i class="bi bi-shield-check"></i> Your information is protected and will not be shared with third parties.
-                    </p>
-                </form>
+                        <div class="form-group">
+                            <label for="service" class="form-label">
+                                Service Interested In *
+                            </label>
+                            <select
+                                id="service"
+                                name="service"
+                                required
+                                class="form-select"
+                            >
+                                <option value="">Select a service</option>
+                                <option value="photography">Photography</option>
+                                <option value="videography">Videography</option>
+                                <option value="content-creation">Content Creation</option>
+                                <option value="workshops">Workshops & Masterclasses</option>
+                                <option value="brand-strategy">Brand Strategy</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span class="form-error" id="service-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">
+                                Tell me about your vision *
+                            </label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="5"
+                                required
+                                placeholder="Share details about your event, preferred style, timeline, and any special requests..."
+                                class="form-textarea"
+                                minlength="10"
+                            ></textarea>
+                            <span class="form-error" id="message-error"></span>
+                        </div>
+
+                        <button type="submit" class="form-submit-btn" id="submit-btn">
+                            <i class="bi bi-send"></i>
+                            <span>Send Message</span>
+                        </button>
+                        
+                        <p class="form-security-note">
+                            <i class="bi bi-shield-check"></i> Your information is protected and will not be shared with third parties.
+                        </p>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
 <!-- Footer Section -->

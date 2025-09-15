@@ -318,69 +318,36 @@ document.addEventListener('DOMContentLoaded', function() {
   }, {passive: false});
 });
 
-     // YouTube API setup for video autoplay
-        let player;
-        let isVideoStarted = false;
-        let wasVideoPlaying = false;
-        
-        // Load YouTube IFrame API
-        const tag = document.createElement('script');
-        tag.src = "https://youtu.be/Ellbj3kieqs?list=TLGGQOrXJe2KdIcxMDA5MjAyNQ";
-        const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        // Initialize YouTube player when API is ready
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '100%',
-                width: '100%',
-                videoId: 'Ellbj3kieqs',
-                playerVars: {
-                    'playsinline': 1,
-                    'modestbranding': 1,
-                    'rel': 0,
-                    'controls': 1,
-                    'showinfo': 0
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
 
-        function onPlayerReady(event) {
-            // Set up click handler for placeholder
-            const placeholder = document.getElementById('video-placeholder');
-            placeholder.addEventListener('click', function() {
-                placeholder.classList.add('hidden');
-                event.target.playVideo();
-                isVideoStarted = true;
-                wasVideoPlaying = true;
-            });
-            
-            // Set up Intersection Observer for autoplay when visible
-            const observer = new IntersectionObserver(function(entries) {
-                if (entries[0].isIntersecting && isVideoStarted) {
-                    if (wasVideoPlaying) {
-                        player.playVideo();
-                    }
-                } else if (isVideoStarted) {
-                    wasVideoPlaying = !player.getPlayerState() === YT.PlayerState.PAUSED;
-                    player.pauseVideo();
-                }
-            }, { threshold: 0.5 });
-            
-            observer.observe(document.getElementById('video-showcase'));
-        }
+function onPlayerReady(event) {
+  playerInitialized = true;
+  
+  // Set up intersection observer to play video when in view
+  const section = document.getElementById('video-showcase');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && playerInitialized) {
+        // Play video when section is in view
+        event.target.playVideo();
+      } else if (playerInitialized) {
+        // Pause video when section is not in view
+        event.target.pauseVideo();
+      }
+    });
+  }, { threshold: 0.5 });
 
-        function onPlayerStateChange(event) {
-            // Handle video end - show placeholder again
-            if (event.data == YT.PlayerState.ENDED) {
-                document.getElementById('video-placeholder').classList.remove('hidden');
-                isVideoStarted = false;
-            }
-        }
+  observer.observe(section);
+}
+
+function onPlayerStateChange(event) {
+  // Optional: Handle player state changes if needed
+}
+
+// Load the YouTube API when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+  loadYouTubeAPI();
+});
 
         // Contact Form Handling
 document.addEventListener('DOMContentLoaded', function() {
@@ -483,4 +450,71 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
+});
+
+// Replace your existing YouTube API code with this updated version
+let player;
+let playerInitialized = false;
+
+// Load YouTube IFrame API
+function loadYouTubeAPI() {
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+}
+
+// Initialize YouTube player when API is ready
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        height: '100%',
+        width: '100%',
+        videoId: 'Ellbj3kieqs',
+        playerVars: {
+            'autoplay': 1,  // Auto-play the video
+            'mute': 1,      // Mute by default (required for autoplay)
+            'playsinline': 1, // Play inline on iOS
+            'modestbranding': 1, // Minimal branding
+            'rel': 0,       // Do not show related videos at the end
+            'controls': 1,  // Show player controls
+            'enablejsapi': 1 // Enable JS API
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+// When player is ready
+function onPlayerReady(event) {
+    playerInitialized = true;
+    console.log('Player is ready');
+    
+    // Set up intersection observer to play video when in view
+    const section = document.getElementById('video-showcase');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && playerInitialized) {
+                // Play video when section is in view
+                event.target.playVideo();
+            } else if (playerInitialized) {
+                // Pause video when section is not in view
+                event.target.pauseVideo();
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(section);
+}
+
+// When player state changes
+function onPlayerStateChange(event) {
+    // Handle player state changes if needed
+    console.log('Player state changed:', event.data);
+}
+
+// Load the YouTube API when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadYouTubeAPI();
 });
